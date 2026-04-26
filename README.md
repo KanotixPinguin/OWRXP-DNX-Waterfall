@@ -13,8 +13,22 @@ This public repo intentionally excludes LoRa-specific profiles, private credenti
   - `3D-Modern`
   - `Std/3DM`
   - `3D-Old`
+- split-view helper:
+  - `Flip/Flop`
 - Theme support including `DNX Matrix`
 - noVNC integration with documented default access
+
+## DNX Waterfall Highlights
+
+This project does not only restyle OpenWebRX+. It adds a more expressive waterfall workflow with several visual modes that feel distinct in daily use:
+
+- `Standard` keeps the classic OpenWebRX+ look
+- `3D-Modern` gives a cleaner raised perspective with a modern slab feel
+- `Std/3DM` blends the normal view with the modern 3D presentation
+- `3D-Old` restores the stronger legacy 3D character for users who prefer the older dramatic depth effect
+- `Flip/Flop` helps switch the visual split behavior quickly while comparing views
+
+Together with the DNX receiver panel changes, this gives the project its own recognizable look without requiring private station assets.
 
 ## Not Included
 
@@ -100,6 +114,23 @@ That template intentionally excludes:
 Operators should create their own SDR device definitions and profiles after first start.
 
 The shipped public template now includes one neutral example `rtlsdr` receiver/profile so a fresh user can see the expected structure and replace it with their own hardware settings.
+
+## Standalone Waterfall Option
+
+Yes, the DNX waterfall can also become its own public deliverable.
+
+Two good public packaging options are:
+
+- a separate repo such as `OWRXP-DNX-Waterfall`
+- or a smaller patch/tool package that only injects the DNX waterfall modes into an existing OpenWebRX+ install
+
+Recommended split if you want to publish it separately later:
+
+- `OWRXP-DNX` for the full UI/runtime overlay
+- `OWRXP-DNX-noVNC` for the desktop-access variant
+- `OWRXP-DNX-Waterfall` for the visual waterfall module only
+
+That third option would be ideal for people who want your waterfall work without adopting the full DNX panel styling.
 
 ## Live System Export
 
