@@ -48,6 +48,17 @@ This is meant to catch obvious public-release mistakes such as:
 - old VNC helper links
 - stale Telegram/Freenode links
 
+## Settings Split
+
+Do not copy a private station `settings.json` directly into the public image.
+
+Use the split below:
+
+- `patches/live-export/` for public-safe UI/runtime overlay files
+- `patches/public-template/settings.json` for the shipped public settings baseline
+
+This keeps the image reproducible without leaking private station data.
+
 ## Current Honesty Rules
 
 This public repo should stay honest about what is already wired and what is still pending:

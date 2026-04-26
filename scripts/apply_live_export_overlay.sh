@@ -21,3 +21,4 @@ copy_if_present "$LIVE_DIR/custom.css" "$BASE/usr/lib/python3/dist-packages/htdo
 copy_if_present "$LIVE_DIR/init.js" "$BASE/usr/lib/python3/dist-packages/htdocs/plugins/receiver/init.js"
 copy_if_present "$LIVE_DIR/dnx_matrix.js" "$BASE/usr/lib/python3/dist-packages/htdocs/plugins/receiver/dnx_matrix/dnx_matrix.js"
 copy_if_present "$LIVE_DIR/dnx_matrix.css" "$BASE/usr/lib/python3/dist-packages/htdocs/plugins/receiver/dnx_matrix/dnx_matrix.css"
+copy_if_present "/opt/owrxp-dnx/patches/public-template/settings.json" "$BASE/var/lib/openwebrx/settings.json"

@@ -68,6 +68,7 @@ The current public export is treated as a direct overlay for the standard OpenWe
 - `patches/live-export/init.js` -> `/usr/lib/python3/dist-packages/htdocs/plugins/receiver/init.js`
 - `patches/live-export/dnx_matrix.js` -> `/usr/lib/python3/dist-packages/htdocs/plugins/receiver/dnx_matrix/dnx_matrix.js`
 - `patches/live-export/dnx_matrix.css` -> `/usr/lib/python3/dist-packages/htdocs/plugins/receiver/dnx_matrix/dnx_matrix.css`
+- `patches/public-template/settings.json` -> `/var/lib/openwebrx/settings.json`
 
 Use [scripts/apply_live_export_overlay.sh](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/scripts/apply_live_export_overlay.sh) to apply these files into an already installed OpenWebRX+ image root.
 
@@ -78,6 +79,25 @@ python3 scripts/check_public_export.py
 ```
 
 This catches the most obvious private leftovers such as private IPs, LoRa mentions, and old VNC helper links.
+
+## Public Settings Policy
+
+The live DNX JavaScript and CSS exports are public-safe enough to ship after review, but the live `settings.json` from a private station is not.
+
+This repo therefore ships a separate public template:
+
+- [patches/public-template/settings.json](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/patches/public-template/settings.json)
+
+That template intentionally excludes:
+
+- private IP addresses
+- personal GPS/location data
+- receiver keys and magic keys
+- private admin email
+- embedded SDRangel/SDRuno/noVNC station links
+- LoRa-specific station text
+
+Operators should create their own SDR device definitions and profiles after first start.
 
 ## Live System Export
 
