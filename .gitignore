@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local exports / temp
+*.tmp
+*.log
+export/
+
+# Keep live-export directory tracked but not accidental dumps outside named files
+patches/live-export/*
+!patches/live-export/.gitkeep
+!patches/live-export/openwebrx.js
+!patches/live-export/custom.css
+!patches/live-export/init.js
+!patches/live-export/dnx_matrix.js
+!patches/live-export/dnx_matrix.css

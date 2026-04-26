@@ -1,0 +1,14 @@
+services:
+  owrxp-dnx:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: owrxp-dnx
+    ports:
+      - "8073:8073"
+      - "6080:6080"
+      - "5901:5901"
+    environment:
+      OWRXP_DNX_VNC_PASSWORD: "changeme"
+      OWRXP_DNX_VNC_DISPLAY: ":1"
+    restart: unless-stopped

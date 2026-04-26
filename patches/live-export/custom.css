@@ -1,0 +1,2106 @@
+/* DNX SAFE BASE */ 
+#openwebrx-waterfall-container,
+.openwebrx-waterfall-container {
+  background: black !important;
+}
+#openwebrx-waterfall-container canvas,
+.openwebrx-waterfall-container canvas {
+  background: transparent !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+
+
+
+/* DNX_MODES_FX_START */
+#openwebrx-panel-receiver .openwebrx-demodulator-button,
+#openwebrx-panel-receiver .openwebrx-modes button,
+#openwebrx-panel-receiver [data-modulation],
+#openwebrx-panel-receiver [data-mode]{
+  position:relative !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+  transition:
+    filter .12s ease,
+    transform .12s ease,
+    box-shadow .16s ease,
+    border-color .16s ease !important;
+}
+
+#openwebrx-panel-receiver .openwebrx-demodulator-button::after,
+#openwebrx-panel-receiver .openwebrx-modes button::after,
+#openwebrx-panel-receiver [data-modulation]::after,
+#openwebrx-panel-receiver [data-mode]::after{
+  content:"";
+  position:absolute;
+  top:-22%;
+  bottom:-22%;
+  left:-48%;
+  width:32%;
+  pointer-events:none;
+  opacity:0;
+  transform:translateX(0) skewX(-20deg);
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.20) 24%,
+    rgba(255,255,255,.72) 50%,
+    rgba(255,255,255,.20) 76%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+#openwebrx-panel-receiver .openwebrx-demodulator-button:hover,
+#openwebrx-panel-receiver .openwebrx-modes button:hover,
+#openwebrx-panel-receiver [data-modulation]:hover,
+#openwebrx-panel-receiver [data-mode]:hover{
+  filter:brightness(1.22) saturate(1.16) !important;
+  transform:translateY(-2px) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 0 14px rgba(255,255,255,.20),
+    0 0 26px rgba(255,255,255,.12) !important;
+}
+
+#openwebrx-panel-receiver .openwebrx-demodulator-button:hover::after,
+#openwebrx-panel-receiver .openwebrx-modes button:hover::after,
+#openwebrx-panel-receiver [data-modulation]:hover::after,
+#openwebrx-panel-receiver [data-mode]:hover::after{
+  animation: dnx-mode-sweep .56s linear infinite !important;
+  opacity:1 !important;
+}
+
+@keyframes dnx-mode-sweep{
+  0%{opacity:0;transform:translateX(0) skewX(-20deg);}
+  8%{opacity:1;}
+  34%{opacity:1;}
+  48%{opacity:0;transform:translateX(420%) skewX(-20deg);}
+  100%{opacity:0;transform:translateX(420%) skewX(-20deg);}
+}
+
+#openwebrx-panel-receiver .openwebrx-demodulator-button.openwebrx-button-selected,
+#openwebrx-panel-receiver .openwebrx-modes button.openwebrx-button-selected,
+#openwebrx-panel-receiver [data-modulation].openwebrx-button-selected,
+#openwebrx-panel-receiver [data-mode].openwebrx-button-selected,
+#openwebrx-panel-receiver .openwebrx-demodulator-button.active,
+#openwebrx-panel-receiver .openwebrx-modes button.active,
+#openwebrx-panel-receiver [data-modulation].active,
+#openwebrx-panel-receiver [data-mode].active,
+#openwebrx-panel-receiver .openwebrx-demodulator-button[aria-pressed="true"],
+#openwebrx-panel-receiver .openwebrx-modes button[aria-pressed="true"],
+#openwebrx-panel-receiver [data-modulation][aria-pressed="true"],
+#openwebrx-panel-receiver [data-mode][aria-pressed="true"]{
+  filter:brightness(1.34) saturate(1.28) contrast(1.05) !important;
+  transform:translateY(-2px) !important;
+  border-color:rgba(255,255,255,.58) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.34),
+    inset 0 8px 18px rgba(255,255,255,.08),
+    0 0 16px rgba(255,255,255,.26),
+    0 0 34px rgba(255,255,255,.14) !important;
+}
+
+#openwebrx-panel-receiver .openwebrx-demodulator-button.openwebrx-button-selected::before,
+#openwebrx-panel-receiver .openwebrx-modes button.openwebrx-button-selected::before,
+#openwebrx-panel-receiver [data-modulation].openwebrx-button-selected::before,
+#openwebrx-panel-receiver [data-mode].openwebrx-button-selected::before,
+#openwebrx-panel-receiver .openwebrx-demodulator-button.active::before,
+#openwebrx-panel-receiver .openwebrx-modes button.active::before,
+#openwebrx-panel-receiver [data-modulation].active::before,
+#openwebrx-panel-receiver [data-mode].active::before,
+#openwebrx-panel-receiver .openwebrx-demodulator-button[aria-pressed="true"]::before,
+#openwebrx-panel-receiver .openwebrx-modes button[aria-pressed="true"]::before,
+#openwebrx-panel-receiver [data-modulation][aria-pressed="true"]::before,
+#openwebrx-panel-receiver [data-mode][aria-pressed="true"]::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 55%);
+}
+/* DNX_MODES_FX_END */
+
+/* DNX_MODE_CURRENT_SOFT_START */
+#openwebrx-panel-receiver .dnx-mode-current,
+#openwebrx-panel-receiver button.dnx-mode-current,
+#openwebrx-panel-receiver .openwebrx-button.dnx-mode-current{
+  transform: translateY(-2px) !important;
+  filter: brightness(1.22) saturate(1.18) !important;
+  border-color: rgba(255,255,255,.82) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.88),
+    0 0 10px rgba(255,255,255,.16),
+    inset 0 0 0 1px rgba(255,255,255,.16),
+    inset 0 6px 12px rgba(255,255,255,.08) !important;
+  z-index: 4 !important;
+}
+
+#openwebrx-panel-receiver .dnx-mode-current::before,
+#openwebrx-panel-receiver button.dnx-mode-current::before,
+#openwebrx-panel-receiver .openwebrx-button.dnx-mode-current::before{
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 58%) !important;
+}
+/* DNX_MODE_CURRENT_SOFT_END */
+
+/* DNX_MODE_CURRENT_PRESSED_START */
+#openwebrx-panel-receiver .openwebrx-demodulator-button,
+#openwebrx-panel-receiver .openwebrx-modes button,
+#openwebrx-panel-receiver [data-modulation],
+#openwebrx-panel-receiver [data-mode]{
+  filter: brightness(.84) saturate(1.20) contrast(1.10) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.09),
+    inset 0 -9px 13px rgba(0,0,0,.15) !important;
+}
+
+#openwebrx-panel-receiver .dnx-mode-current,
+#openwebrx-panel-receiver button.dnx-mode-current,
+#openwebrx-panel-receiver .openwebrx-button.dnx-mode-current{
+  transform: translateY(1px) !important;
+  filter: brightness(1.26) saturate(1.34) contrast(1.22) !important;
+  border: 1px solid rgba(255,255,255,.98) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.98),
+    inset 0 2px 8px rgba(0,0,0,.40),
+    inset 0 0 0 1px rgba(255,255,255,.16),
+    inset 0 -1px 2px rgba(255,255,255,.08),
+    0 0 10px rgba(255,255,255,.12) !important;
+  z-index: 4 !important;
+}
+
+#openwebrx-panel-receiver .dnx-mode-current::before,
+#openwebrx-panel-receiver button.dnx-mode-current::before,
+#openwebrx-panel-receiver .openwebrx-button.dnx-mode-current::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  background:linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(0,0,0,.12) 100%) !important;
+}
+/* DNX_MODE_CURRENT_PRESSED_END */
+
+/* DNX_MATRIX_RECEIVER_THEME_START */
+#dnx-receiver-overlay,
+#openwebrx-panel-receiver{
+  color:#d7ffd7 !important;
+  text-shadow:0 0 4px rgba(90,255,90,.18) !important;
+}
+
+#dnx-receiver-overlay{
+  background:
+    radial-gradient(circle at top, rgba(30,255,80,.12), rgba(0,0,0,0) 38%),
+    linear-gradient(180deg, rgba(6,18,8,.96) 0%, rgba(8,16,10,.98) 100%) !important;
+  border:1px solid rgba(90,255,90,.35) !important;
+  box-shadow:
+    0 0 0 1px rgba(100,255,120,.10),
+    0 0 18px rgba(40,255,80,.12),
+    0 0 34px rgba(20,180,40,.08),
+    inset 0 0 24px rgba(40,255,80,.04) !important;
+}
+
+#dnx-receiver-overlay-bar{
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0)),
+    linear-gradient(90deg, #20ff6b 0%, #0e5d2b 100%) !important;
+  box-shadow:
+    inset 0 -1px 0 rgba(160,255,180,.20),
+    0 0 12px rgba(60,255,90,.18) !important;
+}
+
+#dnx-receiver-overlay-body,
+#openwebrx-panel-receiver{
+  background:
+    linear-gradient(180deg, rgba(12,20,12,.95) 0%, rgba(10,15,11,.98) 100%) !important;
+}
+
+#openwebrx-panel-receiver::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(70,255,70,.035) 0px,
+      rgba(70,255,70,.035) 1px,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0) 4px
+    );
+  opacity:.30;
+}
+
+#openwebrx-panel-receiver,
+#openwebrx-panel-receiver *{
+  color:#d7ffd7 !important;
+}
+
+#openwebrx-panel-receiver .openwebrx-section-title,
+#openwebrx-panel-receiver .openwebrx-panel-title,
+#openwebrx-panel-receiver h1,
+#openwebrx-panel-receiver h2,
+#openwebrx-panel-receiver h3,
+#openwebrx-panel-receiver h4{
+  color:#8dff9f !important;
+  text-shadow:0 0 6px rgba(80,255,120,.28) !important;
+}
+
+#openwebrx-panel-receiver input,
+#openwebrx-panel-receiver select,
+#openwebrx-panel-receiver textarea{
+  background:rgba(10,22,12,.92) !important;
+  border:1px solid rgba(90,255,110,.28) !important;
+  color:#d7ffd7 !important;
+  box-shadow:inset 0 0 8px rgba(40,255,70,.05) !important;
+}
+
+#openwebrx-panel-receiver button,
+#openwebrx-panel-receiver .openwebrx-button,
+#openwebrx-panel-receiver .openwebrx-demodulator-button{
+  border-color:rgba(120,255,140,.22) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 0 8px rgba(40,255,70,.06) !important;
+}
+
+#openwebrx-panel-receiver .openwebrx-button-selected,
+#openwebrx-panel-receiver .dnx-mode-current{
+  box-shadow:
+    0 0 0 1px rgba(210,255,210,.88),
+    0 0 10px rgba(90,255,120,.18),
+    inset 0 0 10px rgba(255,255,255,.06) !important;
+}
+
+#openwebrx-panel-receiver hr,
+#openwebrx-panel-receiver .separator,
+#openwebrx-panel-receiver .openwebrx-divider{
+  border-color:rgba(90,255,110,.18) !important;
+  background:rgba(90,255,110,.18) !important;
+}
+
+#openwebrx-panel-receiver .ui-slider-range,
+#openwebrx-panel-receiver .openwebrx-slider-fill{
+  background:linear-gradient(90deg,#0c551f 0%, #27ff59 100%) !important;
+  box-shadow:0 0 8px rgba(60,255,90,.28) !important;
+}
+
+#openwebrx-panel-receiver .ui-slider-handle{
+  border:1px solid rgba(220,255,220,.72) !important;
+  background:linear-gradient(180deg,#d8ffd8 0%, #6cff83 100%) !important;
+  box-shadow:0 0 8px rgba(100,255,120,.22) !important;
+}
+
+#openwebrx-panel-receiver .openwebrx-panel-line,
+#openwebrx-panel-receiver .openwebrx-section,
+#openwebrx-panel-receiver .openwebrx-group{
+  border-color:rgba(70,255,90,.12) !important;
+}
+
+#openwebrx-panel-receiver .openwebrx-highlight,
+#openwebrx-panel-receiver .highlighted{
+  color:#efffef !important;
+  text-shadow:0 0 8px rgba(140,255,160,.30) !important;
+}
+/* DNX_MATRIX_RECEIVER_THEME_END */
+
+/* DNX_FREQ_SLIDER_NEON_START */
+#openwebrx-panel-receiver .openwebrx-frequency,
+#openwebrx-panel-receiver .openwebrx-frequency-display,
+#openwebrx-panel-receiver .openwebrx-main-frequency,
+#openwebrx-panel-receiver .frequency{
+  color:#ffe86a !important;
+  text-shadow:
+    0 0 5px rgba(255,230,90,.18),
+    0 0 10px rgba(255,220,70,.08) !important;
+}
+
+#openwebrx-panel-receiver .ui-slider-range,
+#openwebrx-panel-receiver .openwebrx-slider-fill{
+  background:linear-gradient(90deg, #00a81f 0%, #39ff14 55%, #9bff64 100%) !important;
+  box-shadow:
+    0 0 8px rgba(57,255,20,.40),
+    0 0 14px rgba(57,255,20,.20) !important;
+}
+
+#openwebrx-panel-receiver .ui-slider,
+#openwebrx-panel-receiver .openwebrx-slider,
+#openwebrx-panel-receiver input[type="range"]{
+  border:1px solid rgba(57,255,20,.28) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(57,255,20,.05),
+    0 0 6px rgba(57,255,20,.08) !important;
+}
+
+#openwebrx-panel-receiver .ui-slider-handle{
+  border:1px solid rgba(245,255,245,.92) !important;
+  background:linear-gradient(180deg,#f5fff5 0%, #b9ffb0 55%, #61ff7e 100%) !important;
+  box-shadow:
+    0 0 9px rgba(120,255,130,.22),
+    inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+/* DNX_FREQ_SLIDER_NEON_END */
+
+/* DNX_SLIDER_ACTIVE_NEON_START */
+#openwebrx-panel-receiver .ui-slider-range,
+#openwebrx-panel-receiver .openwebrx-slider-fill{
+  background: linear-gradient(90deg, #16c92f 0%, #39ff14 45%, #b7ff7a 100%) !important;
+  box-shadow:
+    0 0 6px rgba(57,255,20,.65),
+    0 0 12px rgba(57,255,20,.40),
+    0 0 20px rgba(57,255,20,.22),
+    inset 0 0 6px rgba(255,255,255,.10) !important;
+  border: 1px solid rgba(120,255,120,.35) !important;
+}
+
+#openwebrx-panel-receiver .ui-slider{
+  overflow: visible !important;
+}
+
+#openwebrx-panel-receiver .ui-slider-handle{
+  box-shadow:
+    0 0 8px rgba(120,255,130,.28),
+    0 0 14px rgba(57,255,20,.22),
+    inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+/* DNX_SLIDER_ACTIVE_NEON_END */
+
+/* DNX_RANGE_NEON_REAL_START */
+body.theme-dnx-matrix #dnx-receiver-overlay input[type="range"],
+body.theme-dnx-matrix #openwebrx-panel-receiver input[type="range"]{
+  -webkit-appearance:none !important;
+  appearance:none !important;
+  height:8px !important;
+  background:transparent !important;
+}
+
+/* WebKit track */
+body.theme-dnx-matrix #dnx-receiver-overlay input[type="range"]::-webkit-slider-runnable-track,
+body.theme-dnx-matrix #openwebrx-panel-receiver input[type="range"]::-webkit-slider-runnable-track{
+  height:8px !important;
+  border-radius:999px !important;
+  border:1px solid rgba(57,255,20,.42) !important;
+  background:linear-gradient(90deg,#0f6f20 0%, #2dff5d 55%, #baff80 100%) !important;
+  box-shadow:
+    0 0 8px rgba(57,255,20,.55),
+    0 0 16px rgba(57,255,20,.28),
+    inset 0 0 4px rgba(255,255,255,.10) !important;
+}
+
+/* WebKit thumb */
+body.theme-dnx-matrix #dnx-receiver-overlay input[type="range"]::-webkit-slider-thumb,
+body.theme-dnx-matrix #openwebrx-panel-receiver input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none !important;
+  width:14px !important;
+  height:14px !important;
+  margin-top:-4px !important;
+  border-radius:50% !important;
+  border:1px solid rgba(255,255,255,.96) !important;
+  background:linear-gradient(180deg,#ffffff 0%, #cfffcb 60%, #7dff93 100%) !important;
+  box-shadow:
+    0 0 8px rgba(120,255,130,.35),
+    0 0 14px rgba(57,255,20,.22),
+    inset 0 1px 0 rgba(255,255,255,.65) !important;
+}
+
+/* Firefox track/progress/thumb */
+body.theme-dnx-matrix #dnx-receiver-overlay input[type="range"]::-moz-range-track,
+body.theme-dnx-matrix #openwebrx-panel-receiver input[type="range"]::-moz-range-track{
+  height:8px !important;
+  border-radius:999px !important;
+  border:1px solid rgba(57,255,20,.30) !important;
+  background:rgba(8,35,10,.95) !important;
+}
+
+body.theme-dnx-matrix #dnx-receiver-overlay input[type="range"]::-moz-range-progress,
+body.theme-dnx-matrix #openwebrx-panel-receiver input[type="range"]::-moz-range-progress{
+  height:8px !important;
+  border-radius:999px !important;
+  background:linear-gradient(90deg,#0f6f20 0%, #2dff5d 55%, #baff80 100%) !important;
+  box-shadow:
+    0 0 8px rgba(57,255,20,.55),
+    0 0 16px rgba(57,255,20,.28) !important;
+}
+
+body.theme-dnx-matrix #dnx-receiver-overlay input[type="range"]::-moz-range-thumb,
+body.theme-dnx-matrix #openwebrx-panel-receiver input[type="range"]::-moz-range-thumb{
+  width:14px !important;
+  height:14px !important;
+  border-radius:50% !important;
+  border:1px solid rgba(255,255,255,.96) !important;
+  background:linear-gradient(180deg,#ffffff 0%, #cfffcb 60%, #7dff93 100%) !important;
+  box-shadow:
+    0 0 8px rgba(120,255,130,.35),
+    0 0 14px rgba(57,255,20,.22) !important;
+}
+/* DNX_RANGE_NEON_REAL_END */
+
+/* DNX_FX_TEST_DARK_START */
+#dnx-fx-box button,
+#dnx-fx-box-inline button{
+  background: linear-gradient(180deg, #4a4a4a 0%, #2f2f2f 100%) !important;
+  color: #f2f2f2 !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 1px 3px rgba(0,0,0,.25) !important;
+}
+/* DNX_FX_TEST_DARK_END */
+
+/* DNX_DMR_SIGNAL_STYLE_START */
+#openwebrx-panel-receiver .dnx-pill-dmr,
+#openwebrx-panel-receiver .dnx-pill-dstar{
+  position: relative !important;
+  background:
+    linear-gradient(90deg,
+      #1547ff 0%,
+      #00d8ff 16%,
+      #00ff85 31%,
+      #f4ff4a 46%,
+      #ff9b00 62%,
+      #ffe35f 74%,
+      #00ff85 84%,
+      #00d8ff 92%,
+      #1547ff 100%) !important;
+  color:#111 !important;
+  text-shadow:none !important;
+  border-color: rgba(255,255,255,.34) !important;
+}
+#openwebrx-panel-receiver .dnx-pill-dmr::before,
+#openwebrx-panel-receiver .dnx-pill-dstar::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  background:linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 45%, rgba(0,0,0,.08) 100%) !important;
+}
+#openwebrx-panel-receiver .dnx-pill-dmr.dnx-mode-current,
+#openwebrx-panel-receiver .dnx-pill-dstar.dnx-mode-current{
+  filter: brightness(1.08) saturate(1.12) contrast(1.08) !important;
+}
+/* DNX_DMR_SIGNAL_STYLE_END */
+
+/* DNX_DAB_SIGNAL_STYLE_START */
+#openwebrx-panel-receiver .dnx-pill-dab{
+  position: relative !important;
+  color:#111 !important;
+  text-shadow:none !important;
+  border-color: rgba(255,245,180,.42) !important;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #ff9a1a 0px,
+      #ff9a1a 6px,
+      #ffb42c 6px,
+      #ffb42c 11px,
+      #ffd84a 11px,
+      #ffd84a 16px,
+      #fff06a 16px,
+      #fff06a 20px,
+      #ffb22a 20px,
+      #ffb22a 26px,
+      #ff8612 26px,
+      #ff8612 32px
+    ) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    0 0 8px rgba(255,170,40,.16) !important;
+}
+
+#openwebrx-panel-receiver .dnx-pill-dab::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 40%, rgba(120,30,0,.10) 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.05) 0 2px,
+      rgba(0,0,0,0) 2px 10px
+    ) !important;
+}
+
+#openwebrx-panel-receiver .dnx-pill-dab.dnx-mode-current{
+  filter: brightness(1.10) saturate(1.10) contrast(1.08) !important;
+}
+/* DNX_DAB_SIGNAL_STYLE_END */
+
+/* DNX_LEFTPANELS_OVER_WATERFALL_START */
+
+/* Wasserfall / Scala bewusst unten halten */
+#webrx-canvas-container,
+#openwebrx-scale-container,
+#openwebrx-scale-canvas,
+.openwebrx-scale-container,
+.openwebrx-bandplan,
+.openwebrx-bandplan-container{
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Linke OWRX-Panels über Wasserfall */
+#openwebrx-panel-log,
+#openwebrx-panel-digimodes,
+#openwebrx-panel-sstv-message,
+#openwebrx-panel-fax-message,
+#openwebrx-panel-wsjt-message,
+#openwebrx-panel-js8-message,
+#openwebrx-panel-packet-message,
+#openwebrx-panel-pocsag-message,
+#openwebrx-panel-page-message,
+#openwebrx-panel-hfdl-message,
+#openwebrx-panel-adsb-message,
+#openwebrx-panel-ism-message,
+#openwebrx-panel-dsc-message,
+#openwebrx-panel-skimmer-message,
+#openwebrx-panel-metadata-m17,
+#openwebrx-panel-metadata-ysf,
+#openwebrx-panel-metadata-dstar,
+#openwebrx-panel-metadata-nxdn,
+#openwebrx-panel-metadata-dmr,
+#openwebrx-panel-metadata-wfm,
+#openwebrx-panel-metadata-hdr,
+#openwebrx-panel-metadata-dab,
+#openwebrx-panel-metadata-drm{
+  position: relative !important;
+  z-index: 2200 !important;
+}
+
+/* Add bookmark / Dialoge / Modal-Fenster ganz nach vorn */
+.openwebrx-bookmark-dialog,
+.openwebrx-bookmark-editor,
+.openwebrx-dialog,
+.ui-dialog,
+.modal,
+.modal-dialog,
+[class*="bookmark"][class*="dialog"],
+[class*="bookmark"][class*="editor"]{
+  position: fixed !important;
+  z-index: 3200 !important;
+}
+
+/* Dialog-Inhalt ebenfalls darüber */
+.openwebrx-bookmark-dialog *,
+.openwebrx-bookmark-editor *,
+.openwebrx-dialog *,
+.ui-dialog *,
+.modal *,
+.modal-dialog *{
+  position: relative !important;
+  z-index: 3201 !important;
+}
+
+/* Falls das linke Panel selbst einen Stacking-Context bildet */
+#openwebrx-panels-container,
+.openwebrx-panels-container{
+  position: relative !important;
+  z-index: 2000 !important;
+}
+/* DNX_LEFTPANELS_OVER_WATERFALL_END */
+
+/* DNX_MATRIX_ALL_WINDOWS_START */
+.openwebrx-panel,
+.openwebrx-dialog,
+.ui-dialog,
+.modal-content,
+.openwebrx-bookmark-dialog,
+.openwebrx-bookmark-editor,
+.openwebrx-message-panel,
+.openwebrx-meta-panel{
+  color:#d7ffd7 !important;
+  background:
+    radial-gradient(circle at top, rgba(30,255,80,.10), rgba(0,0,0,0) 38%),
+    linear-gradient(180deg, rgba(6,18,8,.96) 0%, rgba(8,16,10,.985) 100%) !important;
+  border:1px solid rgba(90,255,90,.34) !important;
+  border-radius:16px !important;
+  box-shadow:
+    0 0 0 1px rgba(100,255,120,.10),
+    0 0 18px rgba(40,255,80,.12),
+    0 0 34px rgba(20,180,40,.08),
+    inset 0 0 24px rgba(40,255,80,.04) !important;
+  text-shadow:0 0 4px rgba(90,255,90,.18) !important;
+}
+
+.openwebrx-panel::before,
+.openwebrx-dialog::before,
+.ui-dialog::before,
+.modal-content::before,
+.openwebrx-bookmark-dialog::before,
+.openwebrx-bookmark-editor::before,
+.openwebrx-message-panel::before,
+.openwebrx-meta-panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(70,255,70,.030) 0px,
+      rgba(70,255,70,.030) 1px,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0) 4px
+    );
+  opacity:.26;
+}
+
+.openwebrx-panel *,
+.openwebrx-dialog *,
+.ui-dialog *,
+.modal-content *,
+.openwebrx-bookmark-dialog *,
+.openwebrx-bookmark-editor *,
+.openwebrx-message-panel *,
+.openwebrx-meta-panel *{
+  color:#d7ffd7 !important;
+}
+
+#openwebrx-client-log-title,
+.ui-dialog-title,
+.modal-title,
+.openwebrx-panel .header,
+.openwebrx-panel h1,
+.openwebrx-panel h2,
+.openwebrx-panel h3,
+.openwebrx-panel h4{
+  color:#8dff9f !important;
+  text-shadow:0 0 6px rgba(80,255,120,.28) !important;
+}
+
+.openwebrx-panel input,
+.openwebrx-panel select,
+.openwebrx-panel textarea,
+.openwebrx-dialog input,
+.openwebrx-dialog select,
+.openwebrx-dialog textarea,
+.ui-dialog input,
+.ui-dialog select,
+.ui-dialog textarea,
+.modal-content input,
+.modal-content select,
+.modal-content textarea{
+  background:rgba(10,22,12,.92) !important;
+  border:1px solid rgba(90,255,110,.28) !important;
+  color:#d7ffd7 !important;
+  box-shadow:inset 0 0 8px rgba(40,255,70,.05) !important;
+}
+
+.openwebrx-panel button,
+.openwebrx-panel .openwebrx-button,
+.openwebrx-dialog button,
+.ui-dialog button,
+.modal-content button{
+  color:#d7ffd7 !important;
+  border:1px solid rgba(120,255,140,.22) !important;
+  background:
+    linear-gradient(180deg, rgba(18,30,18,.96) 0%, rgba(10,18,10,.98) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 0 8px rgba(40,255,70,.06) !important;
+}
+
+.openwebrx-panel button:hover,
+.openwebrx-panel .openwebrx-button:hover,
+.openwebrx-dialog button:hover,
+.ui-dialog button:hover,
+.modal-content button:hover{
+  filter:brightness(1.12) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 10px rgba(60,255,90,.12) !important;
+}
+
+.openwebrx-panel hr,
+.openwebrx-dialog hr,
+.ui-dialog hr,
+.modal-content hr,
+.openwebrx-panel .separator,
+.openwebrx-dialog .separator,
+.ui-dialog .separator{
+  border-color:rgba(90,255,110,.18) !important;
+  background:rgba(90,255,110,.18) !important;
+}
+
+.openwebrx-panel table,
+.openwebrx-dialog table,
+.ui-dialog table,
+.modal-content table{
+  color:#d7ffd7 !important;
+}
+
+.openwebrx-panel th,
+.openwebrx-dialog th,
+.ui-dialog th,
+.modal-content th{
+  color:#a8ffb3 !important;
+}
+
+.openwebrx-panel td,
+.openwebrx-dialog td,
+.ui-dialog td,
+.modal-content td{
+  border-color:rgba(90,255,110,.12) !important;
+}
+
+.openwebrx-panel a,
+.openwebrx-dialog a,
+.ui-dialog a,
+.modal-content a{
+  color:#8dff9f !important;
+}
+/* DNX_MATRIX_ALL_WINDOWS_END */
+
+/* DNX_STATUS_CLEAN_SINGLE_START */
+#openwebrx-panel-status,
+.openwebrx-panel-status{
+  position: fixed !important;
+  top: 51px !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999999 !important;
+  display: none;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+#openwebrx-panel-status .openwebrx-progressbar,
+.openwebrx-panel-status .openwebrx-progressbar{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex: 0 0 auto !important;
+  height: 20px !important;
+  padding: 0 8px !important;
+  border-radius: 8px !important;
+  background: #111 !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  white-space: nowrap !important;
+  transition: none !important;
+  animation: none !important;
+  box-shadow: none !important;
+  position: relative !important;
+  overflow: hidden !important;
+  gap: 6px !important;
+}
+
+#openwebrx-panel-status .openwebrx-progressbar span,
+.openwebrx-panel-status .openwebrx-progressbar span{
+  display: inline-block !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  flex: 0 0 auto !important;
+}
+
+/* feste Breiten pro Typ gegen Zittern */
+#openwebrx-bar-audio-buffer{ width: 132px !important; }
+#openwebrx-bar-audio-output{ width: 160px !important; }
+#openwebrx-bar-audio-speed{ width: 150px !important; }
+#openwebrx-bar-battery{ width: 128px !important; }
+#openwebrx-bar-network-speed{ width: 170px !important; }
+#openwebrx-bar-server-cpu{ width: 165px !important; }
+#openwebrx-bar-clients{ width: 120px !important; }
+
+#openwebrx-panel-status .openwebrx-progressbar > div,
+.openwebrx-panel-status .openwebrx-progressbar > div{
+  flex: 1 1 auto !important;
+  min-width: 42px !important;
+  border-radius: 6px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+#openwebrx-panel-status .openwebrx-progressbar > div::after,
+.openwebrx-panel-status .openwebrx-progressbar > div::after{
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  border-radius: inherit !important;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,.20) 0%,
+      rgba(255,255,255,.07) 36%,
+      rgba(255,255,255,0) 60%) !important;
+}
+
+#openwebrx-panel-status .openwebrx-progressbar[data-type="audiobuffer"] > div,
+.openwebrx-panel-status .openwebrx-progressbar[data-type="audiobuffer"] > div { background:#2aa1ff !important; }
+
+#openwebrx-panel-status .openwebrx-progressbar[data-type="audiooutput"] > div,
+.openwebrx-panel-status .openwebrx-progressbar[data-type="audiooutput"] > div { background:#4cc3ff !important; }
+
+#openwebrx-panel-status .openwebrx-progressbar[data-type="audiospeed"] > div,
+.openwebrx-panel-status .openwebrx-progressbar[data-type="audiospeed"] > div { background:#4cc3ff !important; }
+
+#openwebrx-panel-status .openwebrx-progressbar[data-type="networkspeed"] > div,
+.openwebrx-panel-status .openwebrx-progressbar[data-type="networkspeed"] > div { background:#00c853 !important; }
+
+#openwebrx-panel-status .openwebrx-progressbar[data-type="cpu"] > div,
+.openwebrx-panel-status .openwebrx-progressbar[data-type="cpu"] > div { background:#ff3b30 !important; }
+
+#openwebrx-panel-status .openwebrx-progressbar[data-type="clients"] > div,
+.openwebrx-panel-status .openwebrx-progressbar[data-type="clients"] > div { background:#00e676 !important; }
+
+#openwebrx-panel-status .openwebrx-progressbar[data-type="battery"] > div,
+.openwebrx-panel-status .openwebrx-progressbar[data-type="battery"] > div { background:#aaff00 !important; }
+/* DNX_STATUS_CLEAN_SINGLE_END */
+
+/* DNX_STATUS_FINETUNE_START */
+#openwebrx-panel-status,
+.openwebrx-panel-status{
+  top: 54px !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+#openwebrx-panel-status .openwebrx-progressbar,
+.openwebrx-panel-status .openwebrx-progressbar{
+  height: 22px !important;
+  padding: 0 10px !important;
+  border-radius: 9px !important;
+  font-size: 11px !important;
+  line-height: 22px !important;
+  gap: 8px !important;
+}
+
+#openwebrx-panel-status .openwebrx-progressbar span,
+.openwebrx-panel-status .openwebrx-progressbar span{
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  letter-spacing: .1px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 22px !important;
+}
+
+#openwebrx-panel-status .openwebrx-progressbar > div,
+.openwebrx-panel-status .openwebrx-progressbar > div{
+  align-self: center !important;
+  min-width: 46px !important;
+  height: 12px !important;
+  margin: 0 !important;
+  border-radius: 7px !important;
+}
+
+#openwebrx-panel-status .openwebrx-progressbar > div::after,
+.openwebrx-panel-status .openwebrx-progressbar > div::after{
+  border-radius: 7px !important;
+}
+/* DNX_STATUS_FINETUNE_END */
+
+/* DNX_TOP_BUTTONS_LOWER_START */
+#dnx-step1-nav{
+  margin-top: 18px !important;
+}
+
+#dnx-step1-nav a{
+  position: relative !important;
+  top: 7px !important;
+}
+
+#openwebrx-panel-status,
+.openwebrx-panel-status{
+  position: fixed !important;
+  top: 61px !important;
+  left: 50% !important;
+  right: auto !important;
+  width: auto !important;
+  max-width: calc(100vw - 16px) !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+}
+/* DNX_TOP_BUTTONS_LOWER_END */
+
+/* DNX_MATRIX_GRAY_PANELS_START */
+
+/* Scala / Frequenzleiste dunkler */
+#openwebrx-scale-container,
+.openwebrx-scale-container,
+#openwebrx-scale-canvas{
+  background:
+    linear-gradient(180deg, rgba(10,18,12,.96) 0%, rgba(8,14,10,.98) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.03),
+    inset 0 0 18px rgba(40,255,80,.04) !important;
+}
+
+/* Decoder- und Metadaten-Fenster außen */
+#openwebrx-panel-digimodes,
+#openwebrx-panel-sstv-message,
+#openwebrx-panel-fax-message,
+#openwebrx-panel-wsjt-message,
+#openwebrx-panel-js8-message,
+#openwebrx-panel-packet-message,
+#openwebrx-panel-pocsag-message,
+#openwebrx-panel-page-message,
+#openwebrx-panel-hfdl-message,
+#openwebrx-panel-adsb-message,
+#openwebrx-panel-ism-message,
+#openwebrx-panel-dsc-message,
+#openwebrx-panel-skimmer-message,
+#openwebrx-panel-metadata-m17,
+#openwebrx-panel-metadata-ysf,
+#openwebrx-panel-metadata-dstar,
+#openwebrx-panel-metadata-nxdn,
+#openwebrx-panel-metadata-dmr,
+#openwebrx-panel-metadata-wfm,
+#openwebrx-panel-metadata-hdr,
+#openwebrx-panel-metadata-dab,
+#openwebrx-panel-metadata-drm{
+  background:
+    radial-gradient(circle at top, rgba(30,255,80,.08), rgba(0,0,0,0) 38%),
+    linear-gradient(180deg, rgba(8,16,10,.97) 0%, rgba(6,12,8,.99) 100%) !important;
+  border: 1px solid rgba(80,255,100,.26) !important;
+  box-shadow:
+    0 0 0 1px rgba(100,255,120,.08),
+    0 0 18px rgba(40,255,80,.10),
+    inset 0 0 22px rgba(40,255,80,.04) !important;
+  color:#d7ffd7 !important;
+}
+
+/* Graue Innenflächen dunkel machen */
+#openwebrx-panel-digimodes table,
+#openwebrx-panel-digimodes tbody,
+#openwebrx-panel-digimodes thead,
+#openwebrx-panel-digimodes tr,
+#openwebrx-panel-digimodes td,
+#openwebrx-panel-digimodes th,
+#openwebrx-panel-digimodes .timeslot,
+#openwebrx-panel-digimodes .timeslot1,
+#openwebrx-panel-digimodes .timeslot2,
+#openwebrx-panel-digimodes [class*="timeslot"],
+#openwebrx-panel-digimodes [class*="slot"],
+#openwebrx-panel-digimodes > div,
+#openwebrx-panel-digimodes > section,
+#openwebrx-panel-digimodes > article,
+#openwebrx-panel-adsb-message table,
+#openwebrx-panel-adsb-message tbody,
+#openwebrx-panel-adsb-message thead,
+#openwebrx-panel-adsb-message tr,
+#openwebrx-panel-adsb-message td,
+#openwebrx-panel-adsb-message th{
+  background: rgba(95,95,95,.18) !important;
+  color:#d7ffd7 !important;
+  border-color: rgba(90,255,110,.14) !important;
+}
+
+/* Häufige graue Boxen innerhalb solcher Panels */
+#openwebrx-panel-digimodes .panel,
+#openwebrx-panel-digimodes .box,
+#openwebrx-panel-digimodes .inner,
+#openwebrx-panel-digimodes .content,
+#openwebrx-panel-digimodes .body,
+#openwebrx-panel-digimodes .window,
+#openwebrx-panel-digimodes .list,
+#openwebrx-panel-digimodes .entry{
+  background:
+    linear-gradient(180deg, rgba(24,24,24,.72) 0%, rgba(12,18,12,.88) 100%) !important;
+  border: 1px solid rgba(80,255,100,.16) !important;
+  color:#d7ffd7 !important;
+}
+
+/* Tabellenköpfe klarer */
+#openwebrx-panel-digimodes th,
+#openwebrx-panel-adsb-message th,
+#openwebrx-panel-hfdl-message th,
+#openwebrx-panel-acars-message th{
+  color:#a8ffb3 !important;
+  text-shadow:0 0 6px rgba(80,255,120,.18) !important;
+}
+
+/* Schriften allgemein */
+#openwebrx-panel-digimodes *,
+#openwebrx-panel-adsb-message *,
+#openwebrx-panel-hfdl-message *,
+#openwebrx-panel-acars-message *,
+#openwebrx-panel-metadata-dmr *,
+#openwebrx-panel-metadata-dstar *,
+#openwebrx-panel-metadata-ysf *,
+#openwebrx-panel-metadata-nxdn *,
+#openwebrx-panel-metadata-dab *,
+#openwebrx-panel-metadata-drm *,
+#openwebrx-panel-metadata-hdr *{
+  color:#d7ffd7 !important;
+}
+/* DNX_MATRIX_GRAY_PANELS_END */
+
+/* DNX_MATRIX_INNER_DARKER_START */
+#openwebrx-panel-digimodes table,
+#openwebrx-panel-digimodes tbody,
+#openwebrx-panel-digimodes thead,
+#openwebrx-panel-digimodes tr,
+#openwebrx-panel-digimodes td,
+#openwebrx-panel-digimodes th,
+#openwebrx-panel-digimodes .timeslot,
+#openwebrx-panel-digimodes .timeslot1,
+#openwebrx-panel-digimodes .timeslot2,
+#openwebrx-panel-digimodes [class*="timeslot"],
+#openwebrx-panel-digimodes [class*="slot"],
+#openwebrx-panel-digimodes > div,
+#openwebrx-panel-digimodes > section,
+#openwebrx-panel-digimodes > article,
+#openwebrx-panel-adsb-message table,
+#openwebrx-panel-adsb-message tbody,
+#openwebrx-panel-adsb-message thead,
+#openwebrx-panel-adsb-message tr,
+#openwebrx-panel-adsb-message td,
+#openwebrx-panel-adsb-message th,
+#openwebrx-panel-hfdl-message table,
+#openwebrx-panel-hfdl-message tbody,
+#openwebrx-panel-hfdl-message thead,
+#openwebrx-panel-hfdl-message tr,
+#openwebrx-panel-hfdl-message td,
+#openwebrx-panel-hfdl-message th,
+#openwebrx-panel-acars-message table,
+#openwebrx-panel-acars-message tbody,
+#openwebrx-panel-acars-message thead,
+#openwebrx-panel-acars-message tr,
+#openwebrx-panel-acars-message td,
+#openwebrx-panel-acars-message th{
+  background: linear-gradient(180deg, rgba(34,34,34,.88) 0%, rgba(16,22,16,.94) 100%) !important;
+  color:#d7ffd7 !important;
+  border-color: rgba(90,255,110,.14) !important;
+}
+
+#openwebrx-panel-digimodes .panel,
+#openwebrx-panel-digimodes .box,
+#openwebrx-panel-digimodes .inner,
+#openwebrx-panel-digimodes .content,
+#openwebrx-panel-digimodes .body,
+#openwebrx-panel-digimodes .window,
+#openwebrx-panel-digimodes .list,
+#openwebrx-panel-digimodes .entry,
+#openwebrx-panel-adsb-message .panel,
+#openwebrx-panel-adsb-message .box,
+#openwebrx-panel-adsb-message .inner,
+#openwebrx-panel-adsb-message .content,
+#openwebrx-panel-hfdl-message .panel,
+#openwebrx-panel-hfdl-message .box,
+#openwebrx-panel-acars-message .panel,
+#openwebrx-panel-acars-message .box{
+  background: linear-gradient(180deg, rgba(28,28,28,.92) 0%, rgba(10,16,10,.97) 100%) !important;
+  border: 1px solid rgba(80,255,100,.16) !important;
+  color:#d7ffd7 !important;
+}
+/* DNX_MATRIX_INNER_DARKER_END */
+
+/* DNX_MATRIX_HARD_OVERRIDE_START */
+
+/* Scala wirklich dunkel */
+#openwebrx-scale-container,
+.openwebrx-scale-container,
+#openwebrx-scale-canvas,
+#openwebrx-scale-canvas-container,
+#openwebrx-frequency-scale,
+#openwebrx-waterfall-labels{
+  background: #061008 !important;
+  background-image: linear-gradient(180deg, rgba(10,20,12,.98) 0%, rgba(4,10,6,1) 100%) !important;
+  color: #d7ffd7 !important;
+}
+
+/* Digitale Decoder-Panels außen */
+#openwebrx-panel-digimodes,
+#openwebrx-panel-digimodes .openwebrx-panel,
+#openwebrx-panel-digimodes .openwebrx-panel-body,
+#openwebrx-panel-digimodes .openwebrx-panel-content{
+  background: linear-gradient(180deg, rgba(8,16,10,.98) 0%, rgba(5,10,7,1) 100%) !important;
+  color:#d7ffd7 !important;
+  border-color: rgba(80,255,100,.22) !important;
+}
+
+/* Innere Timeslot-Fenster hart dunkel statt grau */
+#openwebrx-panel-digimodes .timeslot,
+#openwebrx-panel-digimodes .timeslot1,
+#openwebrx-panel-digimodes .timeslot2,
+#openwebrx-panel-digimodes [class*="timeslot"],
+#openwebrx-panel-digimodes [class*="slot"],
+#openwebrx-panel-digimodes > div > div,
+#openwebrx-panel-digimodes .panel,
+#openwebrx-panel-digimodes .box,
+#openwebrx-panel-digimodes .inner,
+#openwebrx-panel-digimodes .content,
+#openwebrx-panel-digimodes .body,
+#openwebrx-panel-digimodes .window{
+  background: #0c0f0c !important;
+  background-image: linear-gradient(180deg, rgba(28,32,28,.96) 0%, rgba(10,14,10,1) 100%) !important;
+  color:#d7ffd7 !important;
+  border: 1px solid rgba(80,255,100,.14) !important;
+  box-shadow: inset 0 0 12px rgba(30,255,70,.03) !important;
+}
+
+/* Falls Tabellenzellen selbst grau sind */
+#openwebrx-panel-digimodes table,
+#openwebrx-panel-digimodes tbody,
+#openwebrx-panel-digimodes thead,
+#openwebrx-panel-digimodes tr,
+#openwebrx-panel-digimodes td,
+#openwebrx-panel-digimodes th{
+  background: transparent !important;
+  color:#d7ffd7 !important;
+  border-color: rgba(80,255,100,.12) !important;
+}
+
+/* ADS-B / ähnliche graue Flächen ebenfalls dunkel */
+#openwebrx-panel-adsb-message,
+#openwebrx-panel-adsb-message .openwebrx-panel,
+#openwebrx-panel-adsb-message .openwebrx-panel-body,
+#openwebrx-panel-adsb-message .openwebrx-panel-content,
+#openwebrx-panel-adsb-message table,
+#openwebrx-panel-adsb-message tbody,
+#openwebrx-panel-adsb-message thead,
+#openwebrx-panel-adsb-message tr,
+#openwebrx-panel-adsb-message td,
+#openwebrx-panel-adsb-message th{
+  background: #0c0f0c !important;
+  background-image: linear-gradient(180deg, rgba(28,32,28,.96) 0%, rgba(10,14,10,1) 100%) !important;
+  color:#d7ffd7 !important;
+  border-color: rgba(80,255,100,.12) !important;
+}
+/* DNX_MATRIX_HARD_OVERRIDE_END */
+
+/* DNX_MATRIX_EXACT_TIMESLOT_SCALE_START */
+
+/* Exakte DMR-Timeslot-Boxen */
+#openwebrx-panel-digimodes .openwebrx-dmr-timeslot-panel{
+  background: linear-gradient(180deg, rgba(24,28,24,.96) 0%, rgba(8,12,8,1) 100%) !important;
+  border: 1px solid rgba(80,255,100,.16) !important;
+  box-shadow:
+    inset 0 0 14px rgba(30,255,70,.03),
+    0 0 8px rgba(30,255,70,.06) !important;
+}
+
+#openwebrx-panel-digimodes .openwebrx-dmr-timeslot-panel *,
+#openwebrx-panel-digimodes .openwebrx-dmr-slot{
+  background: transparent !important;
+  color: #d7ffd7 !important;
+}
+
+#openwebrx-panel-digimodes .openwebrx-dmr-slot{
+  color:#d7ffd7 !important;
+  text-shadow:0 0 4px rgba(90,255,90,.12) !important;
+}
+
+/* Scala direkt am echten Canvas abdunkeln */
+#openwebrx-scale-canvas{
+  filter: brightness(.42) saturate(.88) contrast(1.08) hue-rotate(22deg) !important;
+}
+
+/* Umgebung der Scala ebenfalls dunkel */
+#openwebrx-scale-container,
+.openwebrx-scale-container{
+  background: linear-gradient(180deg, rgba(8,16,10,.98) 0%, rgba(4,10,6,1) 100%) !important;
+}
+/* DNX_MATRIX_EXACT_TIMESLOT_SCALE_END */
+
+/* DNX_MATRIX_EXACT_FIX_START */
+
+/* DMR Timeslot-Fenster exakt */
+#openwebrx-panel-metadata-dmr{
+  background:
+    linear-gradient(180deg, rgba(8,16,10,.98) 0%, rgba(5,10,7,1) 100%) !important;
+  border-color: rgba(80,255,100,.22) !important;
+  color:#d7ffd7 !important;
+}
+
+#openwebrx-panel-metadata-dmr .openwebrx-meta-slot.openwebrx-dmr-timeslot-panel{
+  background: linear-gradient(180deg, rgba(30,34,30,.96) 0%, rgba(12,16,12,1) 100%) !important;
+  border: 1px solid rgba(80,255,100,.16) !important;
+  box-shadow:
+    inset 0 0 14px rgba(30,255,70,.03),
+    0 0 8px rgba(30,255,70,.06) !important;
+  color:#d7ffd7 !important;
+}
+
+#openwebrx-panel-metadata-dmr .openwebrx-meta-slot.openwebrx-dmr-timeslot-panel *,
+#openwebrx-panel-metadata-dmr .openwebrx-dmr-slot,
+#openwebrx-panel-metadata-dmr .openwebrx-dmr-id,
+#openwebrx-panel-metadata-dmr .openwebrx-dmr-name,
+#openwebrx-panel-metadata-dmr .openwebrx-dmr-target{
+  color:#d7ffd7 !important;
+  background: transparent !important;
+  text-shadow: 0 0 4px rgba(90,255,90,.10) !important;
+}
+
+/* Scala exakt */
+#openwebrx-scale-container{
+  background: linear-gradient(180deg, rgba(8,16,10,.98) 0%, rgba(4,10,6,1) 100%) !important;
+  color:#d7ffd7 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.03),
+    inset 0 0 18px rgba(40,255,80,.04) !important;
+}
+
+#openwebrx-scale-container canvas{
+  filter: brightness(.58) saturate(.90) contrast(1.10) !important;
+}
+/* DNX_MATRIX_EXACT_FIX_END */
+
+/* DNX_SCALE_CANVAS_DIRECT_START */
+#openwebrx-scale-container{
+  background: #061008 !important;
+}
+
+#openwebrx-scale-canvas{
+  filter: brightness(.45) saturate(.82) contrast(1.16) !important;
+  opacity: .96 !important;
+}
+
+#openwebrx-scale-canvas,
+#openwebrx-scale-container canvas{
+  background: transparent !important;
+}
+/* DNX_SCALE_CANVAS_DIRECT_END */
+
+/* DNX_SCALE_EXACT_REAL_START */
+#openwebrx-scale-container{
+  background: #061008 !important;
+}
+
+#openwebrx-frequency-container{
+  background-image: none !important;
+  background-color: #061008 !important;
+  background: linear-gradient(180deg, rgba(8,16,10,.98) 0%, rgba(4,10,6,1) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.03),
+    inset 0 0 18px rgba(40,255,80,.04) !important;
+}
+
+#openwebrx-bookmarks-container{
+  background: linear-gradient(180deg, rgba(8,16,10,.98) 0%, rgba(4,10,6,1) 100%) !important;
+}
+
+#openwebrx-scale-canvas{
+  background: transparent !important;
+}
+
+#openwebrx-frequency-container,
+#openwebrx-bookmarks-container,
+#openwebrx-scale-container{
+  color: #d7ffd7 !important;
+}
+/* DNX_SCALE_EXACT_REAL_END */
+
+/* DNX_TICKER_SPACING_START */
+#dnx-ticker-wrap-first{
+  bottom: 82px !important;
+}
+
+#dnx-ticker-wrap{
+  bottom: 10px !important;
+}
+/* DNX_TICKER_SPACING_END */
+
+/* DNX_ALL_BOOKMARK_TEXT_BLACK_START */
+#openwebrx-bookmarks-container .bookmark,
+#openwebrx-bookmarks-container .bookmark *,
+#openwebrx-bookmarks-container .bookmark .bookmark-content,
+#openwebrx-bookmarks-container .bookmark .bookmark-actions,
+#openwebrx-bookmarks-container .bookmark .action,
+#openwebrx-bookmarks-container .bookmark span,
+#openwebrx-bookmarks-container .bookmark div{
+  color:#000 !important;
+  text-shadow:none !important;
+  -webkit-text-fill-color:#000 !important;
+  fill:#000 !important;
+  stroke:none !important;
+}
+/* DNX_ALL_BOOKMARK_TEXT_BLACK_END */
+
+
+/* DNX_SCALE_DRAG_REDLINE_START */
+#openwebrx-scale-container,
+.openwebrx-scale-container{
+  position:relative !important;
+}
+
+#openwebrx-scale-container::after,
+.openwebrx-scale-container::after{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  height:1px !important;
+  background:rgba(255,40,40,.95) !important;
+  box-shadow:0 0 2px rgba(255,40,40,.45) !important;
+  pointer-events:none !important;
+  z-index:2147483647 !important;
+}
+/* DNX_SCALE_DRAG_REDLINE_END */
+
+
+/* DNX_SCALE_DRAG_REDLINE_STRONGER_START */
+#openwebrx-scale-container,
+.openwebrx-scale-container{
+  position:relative !important;
+}
+
+#openwebrx-scale-container::after,
+.openwebrx-scale-container::after{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  height:3px !important;
+  background:rgba(255,35,35,1) !important;
+  box-shadow:0 0 4px rgba(255,35,35,.55) !important;
+  pointer-events:none !important;
+  z-index:2147483647 !important;
+}
+/* DNX_SCALE_DRAG_REDLINE_STRONGER_END */
+
+
+
+/* DNX_RECEIVER_SETTINGS_THEME_COMPAT_START */
+
+/* Default / Gray */
+body:not(.has-theme) #openwebrx-panel-receiver,
+body.theme-default #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#4a4a4a 0%, #2f2f2f 100%) !important;
+}
+body:not(.has-theme) #openwebrx-panel-receiver .openwebrx-panel-line,
+body.theme-default #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#5a5a5a 0%, #3a3a3a 100%) !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  border-radius:8px !important;
+}
+body:not(.has-theme) #openwebrx-panel-receiver select,
+body:not(.has-theme) #openwebrx-panel-receiver .openwebrx-panel-listbox,
+body.theme-default #openwebrx-panel-receiver select,
+body.theme-default #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#666 0%, #444 100%) !important;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  border:1px solid rgba(255,255,255,.22) !important;
+  border-radius:8px !important;
+}
+body:not(.has-theme) #openwebrx-panel-receiver option,
+body.theme-default #openwebrx-panel-receiver option{
+  background:#4a4a4a !important;
+  color:#fff !important;
+}
+
+/* Brown */
+body.theme-brown #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#5a4434 0%, #32251c 100%) !important;
+}
+body.theme-brown #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#6a5340 0%, #3b2c20 100%) !important;
+  border:1px solid rgba(255,220,180,.18) !important;
+  border-radius:8px !important;
+}
+body.theme-brown #openwebrx-panel-receiver select,
+body.theme-brown #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#735842 0%, #4b3527 100%) !important;
+  color:#fff1dc !important;
+  -webkit-text-fill-color:#fff1dc !important;
+  border:1px solid rgba(255,230,200,.24) !important;
+  border-radius:8px !important;
+}
+body.theme-brown #openwebrx-panel-receiver option{
+  background:#5b4332 !important;
+  color:#fff1dc !important;
+}
+
+/* Night */
+body.theme-night #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#1f2a3a 0%, #0f1620 100%) !important;
+}
+body.theme-night #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#2a3950 0%, #182230 100%) !important;
+  border:1px solid rgba(180,210,255,.18) !important;
+  border-radius:8px !important;
+}
+body.theme-night #openwebrx-panel-receiver select,
+body.theme-night #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#324863 0%, #1b2b3d 100%) !important;
+  color:#e8f3ff !important;
+  -webkit-text-fill-color:#e8f3ff !important;
+  border:1px solid rgba(190,220,255,.24) !important;
+  border-radius:8px !important;
+}
+body.theme-night #openwebrx-panel-receiver option{
+  background:#223248 !important;
+  color:#e8f3ff !important;
+}
+
+/* Shared text */
+body:not(.theme-dnx-matrix) #openwebrx-panel-receiver .webrx-actual-freq,
+body:not(.theme-dnx-matrix) #openwebrx-panel-receiver .webrx-mouse-freq,
+body:not(.theme-dnx-matrix) #openwebrx-panel-receiver .openwebrx-section-divider{
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+}
+
+/* DNX_RECEIVER_SETTINGS_THEME_COMPAT_END */
+
+
+/* DNX_RECEIVER_SETTINGS_MORE_THEME_COMPAT_START */
+
+/* Red */
+body.theme-red #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#5a2424 0%, #2b1010 100%) !important;
+}
+body.theme-red #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#6b2d2d 0%, #371616 100%) !important;
+  border:1px solid rgba(255,190,190,.18) !important;
+  border-radius:8px !important;
+}
+body.theme-red #openwebrx-panel-receiver select,
+body.theme-red #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#7b3838 0%, #471c1c 100%) !important;
+  color:#ffe8e8 !important;
+  -webkit-text-fill-color:#ffe8e8 !important;
+  border:1px solid rgba(255,210,210,.24) !important;
+  border-radius:8px !important;
+}
+body.theme-red #openwebrx-panel-receiver option{
+  background:#5b2626 !important;
+  color:#ffe8e8 !important;
+}
+
+/* Green */
+body.theme-green #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#285828 0%, #112b11 100%) !important;
+}
+body.theme-green #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#337033 0%, #183918 100%) !important;
+  border:1px solid rgba(190,255,190,.18) !important;
+  border-radius:8px !important;
+}
+body.theme-green #openwebrx-panel-receiver select,
+body.theme-green #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#3f8240 0%, #1f4720 100%) !important;
+  color:#efffe9 !important;
+  -webkit-text-fill-color:#efffe9 !important;
+  border:1px solid rgba(220,255,220,.24) !important;
+  border-radius:8px !important;
+}
+body.theme-green #openwebrx-panel-receiver option{
+  background:#295829 !important;
+  color:#efffe9 !important;
+}
+
+/* Blue */
+body.theme-blue #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#28466a 0%, #112033 100%) !important;
+}
+body.theme-blue #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#355a87 0%, #182b42 100%) !important;
+  border:1px solid rgba(190,220,255,.18) !important;
+  border-radius:8px !important;
+}
+body.theme-blue #openwebrx-panel-receiver select,
+body.theme-blue #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#3f6da3 0%, #1e3b58 100%) !important;
+  color:#eef7ff !important;
+  -webkit-text-fill-color:#eef7ff !important;
+  border:1px solid rgba(210,230,255,.24) !important;
+  border-radius:8px !important;
+}
+body.theme-blue #openwebrx-panel-receiver option{
+  background:#2a4d74 !important;
+  color:#eef7ff !important;
+}
+
+/* Navy */
+body.theme-navy #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#1c2f4d 0%, #0c1522 100%) !important;
+}
+body.theme-navy #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#294262 0%, #152338 100%) !important;
+  border:1px solid rgba(180,205,240,.18) !important;
+  border-radius:8px !important;
+}
+body.theme-navy #openwebrx-panel-receiver select,
+body.theme-navy #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#315073 0%, #1a2e46 100%) !important;
+  color:#edf4ff !important;
+  -webkit-text-fill-color:#edf4ff !important;
+  border:1px solid rgba(200,220,250,.24) !important;
+  border-radius:8px !important;
+}
+body.theme-navy #openwebrx-panel-receiver option{
+  background:#213652 !important;
+  color:#edf4ff !important;
+}
+
+/* Black */
+body.theme-black #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#242424 0%, #090909 100%) !important;
+}
+body.theme-black #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#323232 0%, #141414 100%) !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+  border-radius:8px !important;
+}
+body.theme-black #openwebrx-panel-receiver select,
+body.theme-black #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#3b3b3b 0%, #1b1b1b 100%) !important;
+  color:#ffffff !important;
+  -webkit-text-fill-color:#ffffff !important;
+  border:1px solid rgba(255,255,255,.20) !important;
+  border-radius:8px !important;
+}
+body.theme-black #openwebrx-panel-receiver option{
+  background:#242424 !important;
+  color:#ffffff !important;
+}
+
+/* Khaki */
+body.theme-khaki #openwebrx-panel-receiver{
+  background:linear-gradient(180deg,#5b5737 0%, #2d2a18 100%) !important;
+}
+body.theme-khaki #openwebrx-panel-receiver .openwebrx-panel-line{
+  background:linear-gradient(180deg,#6d6842 0%, #3a351d 100%) !important;
+  border:1px solid rgba(255,245,190,.18) !important;
+  border-radius:8px !important;
+}
+body.theme-khaki #openwebrx-panel-receiver select,
+body.theme-khaki #openwebrx-panel-receiver .openwebrx-panel-listbox{
+  background:linear-gradient(180deg,#80794c 0%, #494223 100%) !important;
+  color:#fffce6 !important;
+  -webkit-text-fill-color:#fffce6 !important;
+  border:1px solid rgba(255,250,210,.24) !important;
+  border-radius:8px !important;
+}
+body.theme-khaki #openwebrx-panel-receiver option{
+  background:#5f5933 !important;
+  color:#fffce6 !important;
+}
+
+/* Shared text for these themes */
+body.theme-red #openwebrx-panel-receiver .webrx-actual-freq,
+body.theme-red #openwebrx-panel-receiver .webrx-mouse-freq,
+body.theme-red #openwebrx-panel-receiver .openwebrx-section-divider,
+body.theme-green #openwebrx-panel-receiver .webrx-actual-freq,
+body.theme-green #openwebrx-panel-receiver .webrx-mouse-freq,
+body.theme-green #openwebrx-panel-receiver .openwebrx-section-divider,
+body.theme-blue #openwebrx-panel-receiver .webrx-actual-freq,
+body.theme-blue #openwebrx-panel-receiver .webrx-mouse-freq,
+body.theme-blue #openwebrx-panel-receiver .openwebrx-section-divider,
+body.theme-navy #openwebrx-panel-receiver .webrx-actual-freq,
+body.theme-navy #openwebrx-panel-receiver .webrx-mouse-freq,
+body.theme-navy #openwebrx-panel-receiver .openwebrx-section-divider,
+body.theme-black #openwebrx-panel-receiver .webrx-actual-freq,
+body.theme-black #openwebrx-panel-receiver .webrx-mouse-freq,
+body.theme-black #openwebrx-panel-receiver .openwebrx-section-divider,
+body.theme-khaki #openwebrx-panel-receiver .webrx-actual-freq,
+body.theme-khaki #openwebrx-panel-receiver .webrx-mouse-freq,
+body.theme-khaki #openwebrx-panel-receiver .openwebrx-section-divider{
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+}
+
+/* DNX_RECEIVER_SETTINGS_MORE_THEME_COMPAT_END */
+
+
+/* DNX_ALL_PANELS_THEME_COMPAT_START */
+
+/* gemeinsame Basis fuer alle Panels ausser DNX Matrix */
+body:not(.theme-dnx-matrix) .openwebrx-panel{
+  border-radius:10px !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 2px 10px rgba(0,0,0,.18) !important;
+}
+
+/* Gray / Default */
+body:not(.has-theme) .openwebrx-panel,
+body.theme-default .openwebrx-panel{
+  background:linear-gradient(180deg,#5c5c5c 0%, #373737 100%) !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+  color:#fff !important;
+}
+
+/* Brown */
+body.theme-brown .openwebrx-panel{
+  background:linear-gradient(180deg,#6a4f3a 0%, #35261b 100%) !important;
+  border:1px solid rgba(255,225,190,.16) !important;
+  color:#fff1dc !important;
+}
+
+/* Red */
+body.theme-red .openwebrx-panel{
+  background:linear-gradient(180deg,#6c2b2b 0%, #331313 100%) !important;
+  border:1px solid rgba(255,205,205,.16) !important;
+  color:#ffeaea !important;
+}
+
+/* Green */
+body.theme-green .openwebrx-panel{
+  background:linear-gradient(180deg,#2f5e2f 0%, #153015 100%) !important;
+  border:1px solid rgba(205,255,205,.16) !important;
+  color:#eefeea !important;
+}
+
+/* Blue */
+body.theme-blue .openwebrx-panel{
+  background:linear-gradient(180deg,#31567f 0%, #17283d 100%) !important;
+  border:1px solid rgba(205,225,255,.16) !important;
+  color:#eef6ff !important;
+}
+
+/* Navy */
+body.theme-navy .openwebrx-panel{
+  background:linear-gradient(180deg,#223a5b 0%, #101a29 100%) !important;
+  border:1px solid rgba(195,215,245,.16) !important;
+  color:#eef4ff !important;
+}
+
+/* Black */
+body.theme-black .openwebrx-panel{
+  background:linear-gradient(180deg,#2a2a2a 0%, #0b0b0b 100%) !important;
+  border:1px solid rgba(255,255,255,.12) !important;
+  color:#ffffff !important;
+}
+
+/* Night */
+body.theme-night .openwebrx-panel{
+  background:linear-gradient(180deg,#26364c 0%, #101720 100%) !important;
+  border:1px solid rgba(190,215,255,.16) !important;
+  color:#eef4ff !important;
+}
+
+/* Khaki */
+body.theme-khaki .openwebrx-panel{
+  background:linear-gradient(180deg,#6a6543 0%, #332f1c 100%) !important;
+  border:1px solid rgba(255,245,205,.16) !important;
+  color:#fffce9 !important;
+}
+
+/* Texte in allen Panels */
+body:not(.theme-dnx-matrix) .openwebrx-panel,
+body:not(.theme-dnx-matrix) .openwebrx-panel *{
+  text-shadow:none !important;
+}
+
+/* kleine Innenbereiche etwas mitziehen */
+body.theme-default .openwebrx-panel .openwebrx-panel-line,
+body:not(.has-theme) .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#666 0%, #444 100%) !important;
+  border-radius:8px !important;
+}
+
+body.theme-brown .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#745942 0%, #473224 100%) !important;
+  border-radius:8px !important;
+}
+
+body.theme-red .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#7c3838 0%, #491e1e 100%) !important;
+  border-radius:8px !important;
+}
+
+body.theme-green .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#3d7540 0%, #214225 100%) !important;
+  border-radius:8px !important;
+}
+
+body.theme-blue .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#416b99 0%, #24405d 100%) !important;
+  border-radius:8px !important;
+}
+
+body.theme-navy .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#355174 0%, #1b2f46 100%) !important;
+  border-radius:8px !important;
+}
+
+body.theme-black .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#3c3c3c 0%, #1a1a1a 100%) !important;
+  border-radius:8px !important;
+}
+
+body.theme-night .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#324762 0%, #1a2736 100%) !important;
+  border-radius:8px !important;
+}
+
+body.theme-khaki .openwebrx-panel .openwebrx-panel-line{
+  background:linear-gradient(180deg,#847d54 0%, #4d4527 100%) !important;
+  border-radius:8px !important;
+}
+
+/* DNX Matrix darf weiter ueber sein eigenes Plugin laufen */
+body.theme-dnx-matrix .openwebrx-panel{
+  background:linear-gradient(180deg, rgba(8,26,12,.97) 0%, rgba(4,14,7,.97) 100%) !important;
+  border:1px solid rgba(90,255,120,.24) !important;
+  color:#b9ff8d !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(120,255,150,.06),
+    0 0 14px rgba(0,255,70,.12) !important;
+}
+
+/* DNX_ALL_PANELS_THEME_COMPAT_END */
+
+
+/* DNX_THEME_CONTROLS_COMPAT_START */
+
+/* Gray / Default */
+body:not(.has-theme) .openwebrx-button,
+body.theme-default .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#6c6c6c 0%, #464646 100%) !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  color:#fff !important;
+}
+body:not(.has-theme) .openwebrx-section-divider,
+body.theme-default .openwebrx-section-divider{
+  color:#fff !important;
+}
+body:not(.has-theme) .openwebrx-progressbar,
+body.theme-default .openwebrx-progressbar{
+  background:#4b4b4b !important;
+}
+
+/* Brown */
+body.theme-brown .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#7a6049 0%, #4d3628 100%) !important;
+  border:1px solid rgba(255,230,200,.18) !important;
+  color:#fff1dc !important;
+}
+body.theme-brown .openwebrx-section-divider{
+  color:#fff1dc !important;
+}
+body.theme-brown .openwebrx-progressbar{
+  background:#4e392b !important;
+}
+
+/* Red */
+body.theme-red .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#864040 0%, #552323 100%) !important;
+  border:1px solid rgba(255,210,210,.18) !important;
+  color:#ffeaea !important;
+}
+body.theme-red .openwebrx-section-divider{
+  color:#ffeaea !important;
+}
+body.theme-red .openwebrx-progressbar{
+  background:#512323 !important;
+}
+
+/* Green */
+body.theme-green .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#478549 0%, #275029 100%) !important;
+  border:1px solid rgba(210,255,210,.18) !important;
+  color:#eefeea !important;
+}
+body.theme-green .openwebrx-section-divider{
+  color:#eefeea !important;
+}
+body.theme-green .openwebrx-progressbar{
+  background:#27472a !important;
+}
+
+/* Blue */
+body.theme-blue .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#4c79aa 0%, #2a4868 100%) !important;
+  border:1px solid rgba(210,230,255,.18) !important;
+  color:#eef6ff !important;
+}
+body.theme-blue .openwebrx-section-divider{
+  color:#eef6ff !important;
+}
+body.theme-blue .openwebrx-progressbar{
+  background:#28435f !important;
+}
+
+/* Navy */
+body.theme-navy .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#405f86 0%, #22354e 100%) !important;
+  border:1px solid rgba(205,220,245,.18) !important;
+  color:#eef4ff !important;
+}
+body.theme-navy .openwebrx-section-divider{
+  color:#eef4ff !important;
+}
+body.theme-navy .openwebrx-progressbar{
+  background:#22364d !important;
+}
+
+/* Black */
+body.theme-black .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#474747 0%, #1f1f1f 100%) !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+  color:#fff !important;
+}
+body.theme-black .openwebrx-section-divider{
+  color:#fff !important;
+}
+body.theme-black .openwebrx-progressbar{
+  background:#1e1e1e !important;
+}
+
+/* Night */
+body.theme-night .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#415a79 0%, #233247 100%) !important;
+  border:1px solid rgba(200,220,255,.18) !important;
+  color:#eef4ff !important;
+}
+body.theme-night .openwebrx-section-divider{
+  color:#eef4ff !important;
+}
+body.theme-night .openwebrx-progressbar{
+  background:#223244 !important;
+}
+
+/* Khaki */
+body.theme-khaki .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#8a8258 0%, #554e2d 100%) !important;
+  border:1px solid rgba(255,245,210,.18) !important;
+  color:#fffce9 !important;
+}
+body.theme-khaki .openwebrx-section-divider{
+  color:#fffce9 !important;
+}
+body.theme-khaki .openwebrx-progressbar{
+  background:#544c2a !important;
+}
+
+/* DNX Matrix */
+body.theme-dnx-matrix .openwebrx-button:not([data-mode]):not(.openwebrx-demodulator-button):not(#dnx-bypass-line-btn):not(#dnx-yellow-line-btn){
+  background:linear-gradient(180deg,#10361a 0%, #071a0d 100%) !important;
+  border:1px solid rgba(90,255,120,.26) !important;
+  color:#9dff6a !important;
+  -webkit-text-fill-color:#9dff6a !important;
+  text-shadow:0 0 6px rgba(110,255,90,.16) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(150,255,180,.05),
+    0 0 8px rgba(0,255,70,.10) !important;
+}
+body.theme-dnx-matrix .openwebrx-section-divider{
+  color:#b9ff8d !important;
+  text-shadow:0 0 6px rgba(110,255,90,.16) !important;
+}
+body.theme-dnx-matrix .openwebrx-progressbar{
+  background:#0a1a0d !important;
+  border:1px solid rgba(90,255,120,.16) !important;
+}
+
+/* Slider thumb etwas neutral halten */
+body:not(.theme-dnx-matrix) input[type=range]::-webkit-slider-thumb{
+  box-shadow:none !important;
+}
+body.theme-dnx-matrix input[type=range]::-webkit-slider-thumb{
+  box-shadow:0 0 6px rgba(90,255,120,.35) !important;
+}
+
+/* DNX_THEME_CONTROLS_COMPAT_END */
+
+
+/* DNX_MODE_COLORS_RESTORE_START */
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode]{
+  color:#f4fff4 !important;
+  -webkit-text-fill-color:#f4fff4 !important;
+  text-shadow:0 0 4px rgba(0,0,0,.35) !important;
+}
+
+/* analog */
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="FM"]{ background:linear-gradient(180deg,#3e62d6 0%,#243b86 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="NFM"]{ background:linear-gradient(180deg,#4468dc 0%,#27408f 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="WFM"]{ background:linear-gradient(180deg,#23a7c8 0%,#16697d 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="AM"]{ background:linear-gradient(180deg,#d6a62e 0%,#8b6512 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="SAM"]{ background:linear-gradient(180deg,#d8b24a 0%,#8d6d1a 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="LSB"]{ background:linear-gradient(180deg,#b57adf 0%,#6b3e92 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="USB"]{ background:linear-gradient(180deg,#c26fe3 0%,#742f99 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="CW"]{ background:linear-gradient(180deg,#7d8794 0%,#46505c 100%) !important; }
+
+/* digital voice/data */
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="DMR"]{ background:linear-gradient(180deg,#d7a700 0%,#8c6900 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="DSTAR"]{ background:linear-gradient(180deg,#d7a700 0%,#8c6900 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="D-STAR"]{ background:linear-gradient(180deg,#d7a700 0%,#8c6900 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="NXDN"]{ background:linear-gradient(180deg,#2fc7e8 0%,#18778c 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="YSF"]{ background:linear-gradient(180deg,#34d46a 0%,#1d7f3f 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="M17"]{ background:linear-gradient(180deg,#7f56e8 0%,#4a2c8f 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="FREEDV"]{ background:linear-gradient(180deg,#d05be6 0%,#7a2f8a 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="DRM"]{ background:linear-gradient(180deg,#48c178 0%,#236746 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="DAB"]{ background:linear-gradient(180deg,#ffd034 0%,#d59a00 100%) !important; color:#1b1b1b !important; -webkit-text-fill-color:#1b1b1b !important; text-shadow:none !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="HD"]{ background:linear-gradient(180deg,#31e06c 0%,#17994a 100%) !important; color:#0f1a11 !important; -webkit-text-fill-color:#0f1a11 !important; text-shadow:none !important; }
+
+/* optional extras if present */
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="RTTY"]{ background:linear-gradient(180deg,#f07a3a 0%,#9a451a 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="SSTV"]{ background:linear-gradient(180deg,#e26aa5 0%,#913861 100%) !important; }
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode="PACKET"]{ background:linear-gradient(180deg,#49b7ff 0%,#256b9d 100%) !important; }
+
+/* active state keeps color but reads brighter */
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode].openwebrx-button-selected,
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode].active,
+#openwebrx-panel-receiver .openwebrx-modes button[data-mode][aria-pressed="true"]{
+  filter:brightness(1.08) saturate(1.08) !important;
+}
+/* DNX_MODE_COLORS_RESTORE_END */
+
+
+/* DNX_ACTIVE_MODE_WHITE_GLOW_STRONG_START */
+html body #openwebrx-panel-receiver .openwebrx-modes .dnx-active-mode,
+html body #openwebrx-panel-receiver .openwebrx-modes .active,
+html body #openwebrx-panel-receiver .openwebrx-modes .selected,
+html body #openwebrx-panel-receiver .openwebrx-modes .highlighted,
+html body #openwebrx-panel-receiver .openwebrx-modes [aria-pressed="true"],
+html body #openwebrx-panel-receiver .openwebrx-modes .openwebrx-button-selected{
+  position:relative !important;
+  z-index:8 !important;
+  border:1px solid rgba(255,255,255,.98) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.98),
+    inset 0 0 14px rgba(255,255,255,.12),
+    0 0 12px rgba(255,255,255,.42),
+    0 0 24px rgba(255,255,255,.24),
+    0 0 40px rgba(255,255,255,.14) !important;
+  filter:brightness(1.34) saturate(1.24) contrast(1.08) !important;
+}
+
+html body #openwebrx-panel-receiver .openwebrx-modes .dnx-active-mode::before,
+html body #openwebrx-panel-receiver .openwebrx-modes .active::before,
+html body #openwebrx-panel-receiver .openwebrx-modes .selected::before,
+html body #openwebrx-panel-receiver .openwebrx-modes .highlighted::before,
+html body #openwebrx-panel-receiver .openwebrx-modes [aria-pressed="true"]::before,
+html body #openwebrx-panel-receiver .openwebrx-modes .openwebrx-button-selected::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  background:linear-gradient(180deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 58%) !important;
+}
+
+html body #openwebrx-panel-receiver .openwebrx-modes .dnx-active-mode::after,
+html body #openwebrx-panel-receiver .openwebrx-modes .active::after,
+html body #openwebrx-panel-receiver .openwebrx-modes .selected::after,
+html body #openwebrx-panel-receiver .openwebrx-modes .highlighted::after,
+html body #openwebrx-panel-receiver .openwebrx-modes [aria-pressed="true"]::after,
+html body #openwebrx-panel-receiver .openwebrx-modes .openwebrx-button-selected::after{
+  opacity:1 !important;
+}
+/* DNX_ACTIVE_MODE_WHITE_GLOW_STRONG_END */
+
+
+/* DNX_ACTIVE_MODE_WHITE_GLOW_STRONGER_START */
+html body #openwebrx-panel-receiver .openwebrx-modes .dnx-active-mode,
+html body #openwebrx-panel-receiver .openwebrx-modes .active,
+html body #openwebrx-panel-receiver .openwebrx-modes .selected,
+html body #openwebrx-panel-receiver .openwebrx-modes .highlighted,
+html body #openwebrx-panel-receiver .openwebrx-modes [aria-pressed="true"],
+html body #openwebrx-panel-receiver .openwebrx-modes .openwebrx-button-selected{
+  position:relative !important;
+  z-index:9 !important;
+  border:1px solid rgba(255,255,255,1) !important;
+  box-shadow:
+    inset 0 0 0 3px rgba(255,255,255,1),
+    inset 0 0 18px rgba(255,255,255,.16),
+    0 0 16px rgba(255,255,255,.50),
+    0 0 30px rgba(255,255,255,.30),
+    0 0 48px rgba(255,255,255,.18) !important;
+  filter:brightness(1.38) saturate(1.26) contrast(1.10) !important;
+}
+
+html body #openwebrx-panel-receiver .openwebrx-modes .dnx-active-mode::before,
+html body #openwebrx-panel-receiver .openwebrx-modes .active::before,
+html body #openwebrx-panel-receiver .openwebrx-modes .selected::before,
+html body #openwebrx-panel-receiver .openwebrx-modes .highlighted::before,
+html body #openwebrx-panel-receiver .openwebrx-modes [aria-pressed="true"]::before,
+html body #openwebrx-panel-receiver .openwebrx-modes .openwebrx-button-selected::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  border-radius:inherit !important;
+  pointer-events:none !important;
+  background:linear-gradient(180deg, rgba(255,255,255,.26) 0%, rgba(255,255,255,0) 58%) !important;
+}
+
+html body #openwebrx-panel-receiver .openwebrx-modes .dnx-active-mode::after,
+html body #openwebrx-panel-receiver .openwebrx-modes .active::after,
+html body #openwebrx-panel-receiver .openwebrx-modes .selected::after,
+html body #openwebrx-panel-receiver .openwebrx-modes .highlighted::after,
+html body #openwebrx-panel-receiver .openwebrx-modes [aria-pressed="true"]::after,
+html body #openwebrx-panel-receiver .openwebrx-modes .openwebrx-button-selected::after{
+  opacity:1 !important;
+}
+/* DNX_ACTIVE_MODE_WHITE_GLOW_STRONGER_END */
+
+
+/* DNX_BYPASS_MOUSE_BUTTON_COLORS_FORCE_START */
+html body #openwebrx-panel-receiver #dnx-bypass-line-wrap #dnx-bypass-line-btn{
+  background:#39ff14 !important;
+  background-image:linear-gradient(180deg,#39ff14 0%, #17b80b 100%) !important;
+  border:1px solid #8dff7c !important;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+  text-shadow:none !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.18),
+    0 0 12px rgba(57,255,20,.30) !important;
+}
+
+html body #openwebrx-panel-receiver #dnx-bypass-line-wrap #dnx-yellow-line-btn{
+  background:#ffd93a !important;
+  background-image:linear-gradient(180deg,#ffd93a 0%, #dfb400 100%) !important;
+  border:1px solid #ffe98b !important;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+  text-shadow:none !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.18),
+    0 0 12px rgba(255,217,58,.26) !important;
+}
+
+html body #openwebrx-panel-receiver #dnx-bypass-line-wrap #dnx-bypass-line-btn.active{
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.30),
+    0 0 16px rgba(57,255,20,.44),
+    0 0 26px rgba(57,255,20,.22) !important;
+}
+
+html body #openwebrx-panel-receiver #dnx-bypass-line-wrap #dnx-yellow-line-btn.active{
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.30),
+    0 0 16px rgba(255,217,58,.42),
+    0 0 26px rgba(255,217,58,.20) !important;
+}
+/* DNX_BYPASS_MOUSE_BUTTON_COLORS_FORCE_END */
+
+
+/* DNX_STATUS_TOGGLE_CONDITIONAL_DISPLAY_START */
+#openwebrx-panel-status[style*="display: none"]{
+  display:none !important;
+}
+
+#openwebrx-panel-status:not([style*="display: none"]){
+  display:flex !important;
+}
+/* DNX_STATUS_TOGGLE_CONDITIONAL_DISPLAY_END */
+
+
+/* DNX_STATUS_CENTER_NO_TRANSFORM_START */
+#openwebrx-panel-status,
+.openwebrx-panel-status{
+  left: 0 !important;
+  right: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: fit-content !important;
+  max-width: calc(100vw - 16px) !important;
+}
+/* DNX_STATUS_CENTER_NO_TRANSFORM_END */
+
