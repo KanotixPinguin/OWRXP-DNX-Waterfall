@@ -1,17 +1,9 @@
 services:
-  owrxp-dnx-novnc:
+  owrxp-dnx:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    container_name: owrxp-dnx-novnc
+    container_name: owrxp-dnx
     ports:
       - "8073:8073"
-      - "6080:6080"
-      - "5901:5901"
-    environment:
-      OWRXP_DNX_VNC_DISPLAY: ":1"
-      OWRXP_DNX_VNC_PASSWORD: "changeme"
-      OWRXP_DNX_NOVNC_PORT: "6080"
-      OWRXP_DNX_VNC_PORT: "5901"
-      OWRXP_DNX_WEB_PORT: "8073"
     restart: unless-stopped

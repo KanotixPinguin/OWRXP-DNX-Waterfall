@@ -1,76 +1,133 @@
-# OWRXP-DNX-noVNC
+# OWRXP-DNX
 
-Public OpenWebRX+ DNX image variant with an integrated noVNC desktop layer.
+Public OpenWebRX+ customization project based on the standard OWRX+ package flow, with DNX UI work, modern/old 3D waterfall variants, noVNC helpers, and reproducible patching.
 
-This repo is the companion image to:
-
-- [OWRXP-DNX](https://github.com/KanotixPinguin/OWRXP-DNX) for the lean web-only build
-
-Use this repo if you want the DNX OpenWebRX+ overlay plus a public noVNC access layer with documented default credentials.
+This public repo intentionally excludes LoRa-specific profiles, private credentials, and private network assumptions.
 
 ## Scope
 
-- public OpenWebRX+ base from `luarvique/ppa`
-- DNX overlay from the public `OWRXP-DNX` project structure
-- integrated X11/VNC/noVNC stack
-- documented default noVNC password
-- no private LoRa station data
+- Base OpenWebRX+ install from the standard package/repo flow
+- DNX receiver panel customizations
+- 3D waterfall modes:
+  - `Standard`
+  - `3D-Modern`
+  - `Std/3DM`
+  - `3D-Old`
+- Theme support including `DNX Matrix`
+- noVNC integration with documented default access
 
-## Default Ports
+## Not Included
 
-- OpenWebRX web UI: `8073`
-- noVNC web UI: `6080`
-- raw VNC: `5901`
+- LoRa-specific presets
+- Private passwords
+- Private LAN-only assumptions
+- Personal station branding that should not be published
 
-## Default noVNC Access
+## noVNC Defaults
 
+This project is intended to document and ship standard access details instead of reusing personal passwords.
+
+Current documented defaults should be set in the image and repeated in the final docs:
+
+- noVNC host: `127.0.0.1` inside container
+- exported web endpoint: container/service port mapping from compose
 - VNC display: `:1`
-- default password: `changeme`
+- default noVNC password: `changeme`
 
-Change the password after first start.
+These defaults should be changed by operators after first start.
 
-## What This Variant Adds
+At the current public stage, these values are documented for the planned noVNC layer. The default `docker-compose.yml` in this repo currently publishes only the OpenWebRX+ web UI on port `8073`.
 
-Compared with the base `OWRXP-DNX` repo, this image adds:
+## Repository Layout
 
-- `Xvfb`
-- `x11vnc`
-- `noVNC`
-- a lightweight X11 session
-- a helper terminal inside the VNC desktop
+- [docker/Dockerfile](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/docker/Dockerfile)
+- [docker/docker-compose.yml](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/docker/docker-compose.yml)
+- [patches/](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/patches)
+- [scripts/](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/scripts)
+- [docs/](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/docs)
 
-## Public Safety
+## Build Plan
 
-This repo keeps the same public restrictions as the base project:
+1. Install the public OpenWebRX+ base from the [luarvique/ppa](https://github.com/luarvique/ppa) Ubuntu 24.04 package feed.
+2. Copy DNX patch assets into the image.
+3. Apply overlay scripts to:
+   - `htdocs/openwebrx.js`
+   - `htdocs/plugins/receiver/init.js`
+   - theme/plugin files as needed
+4. Add noVNC support with public defaults as a follow-up layer.
+5. Publish:
+   - source repo to GitHub
+   - optionally Docker image to a registry
 
-- no private IPs
-- no private receiver keys
-- no LoRa-specific private station configuration
-- no personal VNC passwords
+## Overlay Target Paths
 
-## Build
+The current public export is treated as a direct overlay for the standard OpenWebRX+ filesystem:
+
+- `patches/live-export/openwebrx.js` -> `/usr/lib/python3/dist-packages/htdocs/openwebrx.js`
+- `patches/live-export/custom.css` -> `/usr/lib/python3/dist-packages/htdocs/css/custom.css`
+- `patches/live-export/init.js` -> `/usr/lib/python3/dist-packages/htdocs/plugins/receiver/init.js`
+- `patches/live-export/dnx_matrix.js` -> `/usr/lib/python3/dist-packages/htdocs/plugins/receiver/dnx_matrix/dnx_matrix.js`
+- `patches/live-export/dnx_matrix.css` -> `/usr/lib/python3/dist-packages/htdocs/plugins/receiver/dnx_matrix/dnx_matrix.css`
+- `patches/public-template/settings.json` -> `/var/lib/openwebrx/settings.json`
+
+Use [scripts/apply_live_export_overlay.sh](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/scripts/apply_live_export_overlay.sh) to apply these files into an already installed OpenWebRX+ image root.
+
+Before publishing new live exports, run:
 
 ```sh
-docker build -f docker/Dockerfile -t owrxp-dnx-novnc:test .
+python3 scripts/check_public_export.py
 ```
 
-## Run
+This catches the most obvious private leftovers such as private IPs, LoRa mentions, and old VNC helper links.
 
-```sh
-docker run --rm -p 8073:8073 -p 6080:6080 -p 5901:5901 \
-  -e OWRXP_DNX_VNC_PASSWORD=changeme \
-  --name owrxp-dnx-novnc \
-  owrxp-dnx-novnc:test
-```
+## Public Settings Policy
 
-Then open:
+The live DNX JavaScript and CSS exports are public-safe enough to ship after review, but the live `settings.json` from a private station is not.
 
-- OpenWebRX+: `http://SERVER-IP:8073`
-- noVNC: `http://SERVER-IP:6080`
+This repo therefore ships a separate public template:
+
+- [patches/public-template/settings.json](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/patches/public-template/settings.json)
+
+That template intentionally excludes:
+
+- private IP addresses
+- personal GPS/location data
+- receiver keys and magic keys
+- private admin email
+- embedded SDRangel/SDRuno/noVNC station links
+- LoRa-specific station text
+
+Operators should create their own SDR device definitions and profiles after first start.
+
+The shipped public template now includes one neutral example `rtlsdr` receiver/profile so a fresh user can see the expected structure and replace it with their own hardware settings.
+
+## Live System Export
+
+If the live container already contains the final working DNX state, export these files from the running container and commit them into this repo:
+
+- `htdocs/openwebrx.js`
+- `htdocs/css/custom.css`
+- `htdocs/plugins/receiver/init.js`
+- `htdocs/plugins/receiver/dnx_matrix/dnx_matrix.js`
+- optionally `htdocs/plugins/receiver/dnx_matrix/dnx_matrix.css`
+
+Recommended export target inside this repo:
+
+- [patches/live-export/openwebrx.js](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/patches/live-export/openwebrx.js)
+- [patches/live-export/custom.css](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/patches/live-export/custom.css)
+- [patches/live-export/init.js](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/patches/live-export/init.js)
+- [patches/live-export/dnx_matrix.js](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/patches/live-export/dnx_matrix.js)
+
+## GitHub Target
+
+- GitHub account: [KanotixPinguin](https://github.com/KanotixPinguin)
 
 ## Status
 
-This repo is the public noVNC companion variant. It is intentionally separate so users can choose:
+This repo now contains:
 
-- base image without noVNC
-- noVNC image with the extra desktop layer
+- a live-exported DNX overlay
+- an automated Ubuntu 24.04 `luarvique` base install step
+- a public export checker for obvious private leftovers
+
+The next step is to verify the image runtime path and then add the public noVNC layer on top.
