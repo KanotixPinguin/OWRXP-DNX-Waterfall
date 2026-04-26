@@ -99,6 +99,8 @@ That template intentionally excludes:
 
 Operators should create their own SDR device definitions and profiles after first start.
 
+The shipped public template now includes one neutral example `rtlsdr` receiver/profile so a fresh user can see the expected structure and replace it with their own hardware settings.
+
 ## Live System Export
 
 If the live container already contains the final working DNX state, export these files from the running container and commit them into this repo:

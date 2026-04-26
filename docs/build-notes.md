@@ -59,6 +59,8 @@ Use the split below:
 
 This keeps the image reproducible without leaking private station data.
 
+The public settings template contains a minimal example SDR definition so users can boot into a known structure and then replace that example with their own device.
+
 ## Current Honesty Rules
 
 This public repo should stay honest about what is already wired and what is still pending:

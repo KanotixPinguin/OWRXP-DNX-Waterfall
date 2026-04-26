@@ -1,6 +1,22 @@
 {
   "version": 8,
-  "sdrs": {},
+  "sdrs": {
+    "example_sdr": {
+      "name": "Example SDR",
+      "type": "rtlsdr",
+      "ppm": 0,
+      "rf_gain": "auto",
+      "profiles": {
+        "example_fm": {
+          "name": "Example FM",
+          "center_freq": 100000000,
+          "start_freq": 99900000,
+          "start_mod": "wfm",
+          "samp_rate": 2400000
+        }
+      }
+    }
+  },
   "receiver_name": "OWRXP-DNX Public Build",
   "receiver_location": "Set your location",
   "receiver_asl": 0,
@@ -56,5 +72,13 @@
   "flight_url": "https://flightaware.com/live/flight/{}",
   "modes_url": "https://flightaware.com/live/modes/{}/redirect",
   "sonde_url": "https://sondehub.org/{}",
-  "profiles": {}
+  "profiles": {
+    "example_fm": {
+      "name": "Example FM",
+      "center_freq": 100000000,
+      "start_freq": 99900000,
+      "start_mod": "wfm",
+      "samp_rate": 2400000
+    }
+  }
 }
