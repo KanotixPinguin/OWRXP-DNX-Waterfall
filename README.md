@@ -1,4 +1,16 @@
-# OWRXP-DNX-Waterfall
+## 🌊 Waterfall Modes
+
+### 📡 Standard
+![Standard](docs/images/waterfall-standard.png)
+
+### 🎨 3D Modern
+![3D Modern](docs/images/waterfall-3d-modern.png)
+
+### 🧩 Split Mode (Standard + 3D)
+![Split](docs/images/waterfall-split.png)
+
+### 🧊 3D Old
+![3D Old](docs/images/waterfall-3d-old.png)# OWRXP-DNX-Waterfall
 
 Public standalone DNX waterfall module for OpenWebRX+.
 
