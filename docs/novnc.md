@@ -1,5 +1,7 @@
 # noVNC Notes
 
+Status: planned public follow-up layer, not yet wired into the default `docker-compose.yml`.
+
 Public builds should not ship personal passwords.
 
 ## Default Access
@@ -12,7 +14,7 @@ Public builds should not ship personal passwords.
 ## Operator Guidance
 
 1. Start the stack.
-2. Open the published noVNC URL in a browser.
+2. If the image includes the optional noVNC layer, open the published noVNC URL in a browser.
 3. Use the documented default password.
 4. Change the password after first login.
 

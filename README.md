@@ -36,6 +36,8 @@ Current documented defaults should be set in the image and repeated in the final
 
 These defaults should be changed by operators after first start.
 
+At the current public stage, these values are documented for the planned noVNC layer. The default `docker-compose.yml` in this repo currently publishes only the OpenWebRX+ web UI on port `8073`.
+
 ## Repository Layout
 
 - [docker/Dockerfile](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/docker/Dockerfile)
@@ -46,13 +48,13 @@ These defaults should be changed by operators after first start.
 
 ## Build Plan
 
-1. Start from a clean OpenWebRX+ base image using the standard package/repo flow.
+1. Install the public OpenWebRX+ base from the [luarvique/ppa](https://github.com/luarvique/ppa) Ubuntu 24.04 package feed.
 2. Copy DNX patch assets into the image.
-3. Apply patch scripts to:
+3. Apply overlay scripts to:
    - `htdocs/openwebrx.js`
    - `htdocs/plugins/receiver/init.js`
    - theme/plugin files as needed
-4. Add noVNC support with public defaults.
+4. Add noVNC support with public defaults as a follow-up layer.
 5. Publish:
    - source repo to GitHub
    - optionally Docker image to a registry
@@ -68,6 +70,14 @@ The current public export is treated as a direct overlay for the standard OpenWe
 - `patches/live-export/dnx_matrix.css` -> `/usr/lib/python3/dist-packages/htdocs/plugins/receiver/dnx_matrix/dnx_matrix.css`
 
 Use [scripts/apply_live_export_overlay.sh](C:/Users/ich/Documents/OWRX%20Codex/OWRXP-DNX/scripts/apply_live_export_overlay.sh) to apply these files into an already installed OpenWebRX+ image root.
+
+Before publishing new live exports, run:
+
+```sh
+python3 scripts/check_public_export.py
+```
+
+This catches the most obvious private leftovers such as private IPs, LoRa mentions, and old VNC helper links.
 
 ## Live System Export
 
@@ -92,4 +102,10 @@ Recommended export target inside this repo:
 
 ## Status
 
-This repo skeleton was generated to turn a live patched OWRX+ system into a reproducible public build.
+This repo now contains:
+
+- a live-exported DNX overlay
+- an automated Ubuntu 24.04 `luarvique` base install step
+- a public export checker for obvious private leftovers
+
+The next step is to verify the image runtime path and then add the public noVNC layer on top.
