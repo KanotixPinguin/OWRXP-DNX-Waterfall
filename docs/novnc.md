@@ -1,6 +1,6 @@
 # noVNC Notes
 
-Status: planned public follow-up layer, not yet wired into the default `docker-compose.yml`.
+Status: active in this repo by default.
 
 Public builds should not ship personal passwords.
 
@@ -10,13 +10,15 @@ Public builds should not ship personal passwords.
 - noVNC password: `changeme`
 - noVNC web port: `6080`
 - VNC backend port: `5901`
+- OpenWebRX+ web port: `8073`
 
 ## Operator Guidance
 
 1. Start the stack.
-2. If the image includes the optional noVNC layer, open the published noVNC URL in a browser.
+2. Open the noVNC URL in a browser.
 3. Use the documented default password.
-4. Change the password after first login.
+4. Open OpenWebRX+ either directly on port `8073` or from the helper terminal shown in the noVNC session.
+5. Change the password after first login.
 
 ## Public Release Rule
 
