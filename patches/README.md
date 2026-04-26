@@ -1,10 +1,7 @@
 # Patches
 
-This directory is for public DNX patch assets and generated patch fragments.
+This repo keeps only the standalone waterfall module payload.
 
-Suggested contents:
+Main asset:
 
-- finalized `openwebrx.js` patch fragments
-- finalized `plugins/receiver/init.js` patch fragments
-- theme/plugin adjustments
-- public-only assets with no private site data
+- `patches/waterfall/owrx_3d_waterfall.js`

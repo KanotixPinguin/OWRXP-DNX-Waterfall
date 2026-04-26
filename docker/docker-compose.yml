@@ -1,9 +1,9 @@
 services:
-  owrxp-dnx:
+  owrxp-dnx-waterfall:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    container_name: owrxp-dnx
+    container_name: owrxp-dnx-waterfall
     ports:
       - "8073:8073"
     restart: unless-stopped

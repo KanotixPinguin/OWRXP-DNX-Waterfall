@@ -2,11 +2,11 @@ FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-WORKDIR /opt/owrxp-dnx
+WORKDIR /opt/owrxp-dnx-waterfall
 
-COPY patches/ /opt/owrxp-dnx/patches/
-COPY scripts/ /opt/owrxp-dnx/scripts/
-COPY docs/ /opt/owrxp-dnx/docs/
+COPY patches/ /opt/owrxp-dnx-waterfall/patches/
+COPY scripts/ /opt/owrxp-dnx-waterfall/scripts/
+COPY docs/ /opt/owrxp-dnx-waterfall/docs/
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
@@ -17,12 +17,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tini \
     && rm -rf /var/lib/apt/lists/*
 
-RUN chmod +x /opt/owrxp-dnx/scripts/*.sh || true
+RUN chmod +x /opt/owrxp-dnx-waterfall/scripts/*.sh || true
 
-# Install the public OpenWebRX+ base from the luarvique package feed for Ubuntu 24.04,
-# then overlay the currently exported DNX files on top of that base.
-RUN /opt/owrxp-dnx/scripts/install_openwebrx_plus_base.sh
-RUN /opt/owrxp-dnx/scripts/apply_live_export_overlay.sh /
+RUN /opt/owrxp-dnx-waterfall/scripts/install_openwebrx_plus_base.sh
+RUN /opt/owrxp-dnx-waterfall/scripts/apply_waterfall_module.sh /
 
 EXPOSE 8073
 

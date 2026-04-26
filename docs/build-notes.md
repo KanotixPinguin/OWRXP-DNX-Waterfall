@@ -1,65 +1,32 @@
 # Build Notes
 
-## Current State
+## Purpose
 
-This repo currently captures:
+This repo is narrower than `OWRXP-DNX`.
 
-- live-exported runtime files from a working DNX-customized OpenWebRX+ instance
-- a public repo layout
-- overlay scripts that can copy those files into a base image
-- an automated Ubuntu 24.04 package-install step based on `luarvique/ppa`
+It should patch only the DNX waterfall module into a standard OpenWebRX+ install, not the whole DNX runtime overlay.
 
 ## Upstream Base
 
-The public base for this repo should follow the Ubuntu 24.04 instructions from:
+The public base follows the Ubuntu 24.04 package feed from:
 
 - [luarvique/ppa](https://github.com/luarvique/ppa)
-- [OpenWebRX+ Package Repository](https://luarvique.github.io/ppa/)
 
-The key upstream commands are:
+## Patch Target
 
-```sh
-curl -s https://luarvique.github.io/ppa/openwebrx-plus.gpg | sudo gpg --yes --dearmor -o /etc/apt/trusted.gpg.d/openwebrx-plus.gpg
-sudo tee /etc/apt/sources.list.d/openwebrx-plus.list <<<"deb [signed-by=/etc/apt/trusted.gpg.d/openwebrx-plus.gpg] https://luarvique.github.io/ppa/noble ./"
-sudo apt update
-sudo apt install openwebrx
-```
+The waterfall module is injected into:
 
-## Overlay Step
+- `/usr/lib/python3/dist-packages/htdocs/plugins/receiver/init.js`
 
-After the base is installed, apply the DNX overlay:
+The script replaces the existing marked block if present, or appends the block if it is missing.
 
-```sh
-/opt/owrxp-dnx/scripts/apply_live_export_overlay.sh /
-```
+## Public Rule
 
-## Public Safety Check
+Keep this repo focused on the waterfall code path only:
 
-Before pushing a new live-export update, run:
-
-```sh
-python3 scripts/check_public_export.py
-```
-
-This is meant to catch obvious public-release mistakes such as:
-
-- private `192.168.x.x` addresses
-- LoRa references
-- old VNC helper links
-- stale Telegram/Freenode links
-
-## Settings Split
-
-Do not copy a private station `settings.json` directly into the public image.
-
-Use the split below:
-
-- `patches/live-export/` for public-safe UI/runtime overlay files
-- `patches/public-template/settings.json` for the shipped public settings baseline
-
-This keeps the image reproducible without leaking private station data.
-
-The public settings template contains a minimal example SDR definition so users can boot into a known structure and then replace that example with their own device.
+- do not add private station settings
+- do not add noVNC layers here
+- do not add private SDR panel branding here
 
 ## Current Honesty Rules
 
