@@ -62,7 +62,13 @@
     sampleWidth: 1024,
     sampleHeight: 240,
     avgStrength: 0.32,
-    renderStyle: "filled"
+    speedFactor: 2,
+    renderStyle: "filled",
+    heightScale: 1,
+    depthScale: 1,
+    perspectiveStrength: 1,
+    splitRatio: 0.58,
+    topMaskHeight: 32
   };
 
   function loadMode() {
@@ -105,6 +111,11 @@
       if (typeof data.speedFactor === "number") state.speedFactor = data.speedFactor;
       if (typeof data.liveIntervalMs === "number") LIVE_INTERVAL_MS = data.liveIntervalMs;
       if (typeof data.renderStyle === "string") state.renderStyle = data.renderStyle;
+      if (typeof data.heightScale === "number") state.heightScale = data.heightScale;
+      if (typeof data.depthScale === "number") state.depthScale = data.depthScale;
+      if (typeof data.perspectiveStrength === "number") state.perspectiveStrength = data.perspectiveStrength;
+      if (typeof data.splitRatio === "number") state.splitRatio = data.splitRatio;
+      if (typeof data.topMaskHeight === "number") state.topMaskHeight = data.topMaskHeight;
     } catch (err) {}
   }
 
@@ -116,7 +127,12 @@
         avgStrength: state.avgStrength,
         speedFactor: state.speedFactor,
         liveIntervalMs: LIVE_INTERVAL_MS,
-        renderStyle: state.renderStyle
+        renderStyle: state.renderStyle,
+        heightScale: state.heightScale,
+        depthScale: state.depthScale,
+        perspectiveStrength: state.perspectiveStrength,
+        splitRatio: state.splitRatio,
+        topMaskHeight: state.topMaskHeight
       }));
     } catch (err) {}
   }
@@ -140,7 +156,7 @@
       if (typeof data.yaw === "number") state.yaw = data.yaw;
       if (typeof data.pitch === "number") state.pitch = data.pitch;
       if (typeof data.roll === "number") state.roll = data.roll;
-      if (typeof data.zoom === "number") state.zoom = Math.min(data.zoom, 0.42);
+      if (typeof data.zoom === "number") state.zoom = Math.min(data.zoom, 12.0);
       if (typeof data.panX === "number") state.panX = data.panX;
       if (typeof data.panY === "number") state.panY = data.panY;
     } catch (err) {}
@@ -328,6 +344,42 @@
       state.renderStyle = value === "outline" ? "outline" : "filled";
     });
 
+    makeSelect("Height", [
+      { value: 0.8, label: "Low" },
+      { value: 1.0, label: "Normal" },
+      { value: 1.25, label: "High" },
+      { value: 1.5, label: "Ultra" }
+    ], state.heightScale, function(value) {
+      state.heightScale = Number(value) || 1;
+    });
+
+    makeSelect("Depth", [
+      { value: 0.7, label: "Short" },
+      { value: 1.0, label: "Normal" },
+      { value: 1.3, label: "Deep" },
+      { value: 1.6, label: "Ultra" }
+    ], state.depthScale, function(value) {
+      state.depthScale = Number(value) || 1;
+    });
+
+    makeSelect("Camera", [
+      { value: 0.8, label: "Near" },
+      { value: 1.0, label: "Normal" },
+      { value: 1.25, label: "Wide" },
+      { value: 1.5, label: "Ultra" }
+    ], state.perspectiveStrength, function(value) {
+      state.perspectiveStrength = Number(value) || 1;
+    });
+
+    makeSelect("Split", [
+      { value: 0.45, label: "45%" },
+      { value: 0.58, label: "58%" },
+      { value: 0.66, label: "66%" },
+      { value: 0.75, label: "75%" }
+    ], state.splitRatio, function(value) {
+      state.splitRatio = Number(value) || 0.58;
+    });
+
     var reset = document.createElement("button");
     reset.type = "button";
     reset.textContent = "Reset View";
@@ -338,6 +390,11 @@
       state.avgStrength = 0.32;
       state.speedFactor = 2;
       state.renderStyle = "filled";
+      state.heightScale = 1;
+      state.depthScale = 1;
+      state.perspectiveStrength = 1;
+      state.splitRatio = 0.58;
+      state.topMaskHeight = 32;
 
       state.yaw = 0.003;
       state.pitch = -2.693;
@@ -364,6 +421,10 @@
           if (label === "AVG") select.value = "0.32";
           if (label === "Speed") select.value = "2";
           if (label === "Style") select.value = "filled";
+          if (label === "Height") select.value = "1";
+          if (label === "Depth") select.value = "1";
+          if (label === "Camera") select.value = "1";
+          if (label === "Split") select.value = "0.58";
         });
       }
 
@@ -561,8 +622,8 @@
     if (!state.overlay || !state.wrapper) return false;
     var rect = state.wrapper.getBoundingClientRect();
     var dpr = Math.max(1, window.devicePixelRatio || 1);
-    var splitRatio = 0.58;
-    var topInsetCss = state.mode === "old3d" ? 32 : 0;
+    var splitRatio = state.splitRatio || 0.58;
+    var topInsetCss = state.mode === "old3d" ? (state.topMaskHeight || 32) : 0;
     var width = Math.max(1, Math.round(rect.width * dpr));
     var cssHeight = state.mode === "old3d"
       ? Math.max(1, Math.round(rect.height * splitRatio) - topInsetCss)
@@ -819,11 +880,11 @@
     var viewport = {
       cx: width * 0.5,
       baseY: height * 0.74,
-      camera: width * 1.15 / Math.pow(state.zoom, 1.35),
+      camera: (width * 1.15 * state.perspectiveStrength) / Math.pow(state.zoom, 1.35),
       depthOffset: width * 0.06,
       worldWidth: width * 0.9,
-      worldHeight: height * 0.28,
-      worldDepth: height * 1.05,
+      worldHeight: height * 0.28 * state.heightScale,
+      worldDepth: height * 1.05 * state.depthScale,
       screenWidth: width,
       screenHeight: height
     };
@@ -839,10 +900,11 @@
       motionScale = 0.68;
     }
 
-    for (var row = SAMPLE_HEIGHT - rowStep; row >= 1; row -= rowStep) {
-      var nextRow = Math.max(0, row - rowStep);
-      var age0 = (row / (SAMPLE_HEIGHT - 1)) * motionScale;
-      var age1 = (nextRow / (SAMPLE_HEIGHT - 1)) * motionScale;
+    for (var row = 1; row < SAMPLE_HEIGHT - rowStep; row += rowStep) {
+      var nextRow = Math.min(SAMPLE_HEIGHT - 1, row + rowStep);
+      var age0 = (1 - (row / (SAMPLE_HEIGHT - 1))) * motionScale;
+      var age1 = (1 - (nextRow / (SAMPLE_HEIGHT - 1))) * motionScale;
+      if (age0 < 0) age0 = 0;
       if (age1 < 0) age1 = 0;
 
       var cur = buildHeightRow(imageData, row);
